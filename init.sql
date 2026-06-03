@@ -280,5 +280,37 @@ UNION ALL SELECT 'donanim_paketleri',   COUNT(*) FROM donanim_paketleri
 UNION ALL SELECT 'fiyat_listesi',       COUNT(*) FROM fiyat_listesi
 UNION ALL SELECT 'iletisim_talepleri',  COUNT(*) FROM iletisim_talepleri
 UNION ALL SELECT 'geri_cagirmalar',     COUNT(*) FROM geri_cagirmalar
-UNION ALL SELECT 'kampanyalar',         COUNT(*) FROM kampanyalar
 UNION ALL SELECT 'kullanicilar',        COUNT(*) FROM kullanicilar;
+
+-- ============================================================
+-- YENI TABLOLAR (Bayiler, Sepet, Favoriler)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS bayiler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bayi_adi VARCHAR(150) NOT NULL,
+    sehir VARCHAR(50) NOT NULL,
+    adres TEXT NOT NULL,
+    telefon VARCHAR(20) NOT NULL
+);
+
+INSERT INTO bayiler (bayi_adi, sehir, adres, telefon) VALUES 
+('Borusan Oto Avcılar', 'İstanbul', 'Avcılar E-5 Yanyol', '0212 412 00 00'),
+('Borusan Oto İstinye', 'İstanbul', 'İstinye Mah. Sarıyer', '0212 359 33 33'),
+('Borusan Oto Ankara', 'Ankara', 'Balgat, Çankaya', '0312 204 80 00'),
+('Borusan Oto İzmir', 'İzmir', 'Bornova', '0232 400 11 22');
+
+CREATE TABLE IF NOT EXISTS favoriler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(100) NOT NULL,
+    model_id INT NOT NULL,
+    olusturma_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_fav_modeller FOREIGN KEY (model_id) REFERENCES modeller(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS sepet (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(100) NOT NULL,
+    donanim_id INT NOT NULL,
+    olusturma_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_sep_donanim FOREIGN KEY (donanim_id) REFERENCES donanim_paketleri(id) ON DELETE CASCADE
+);

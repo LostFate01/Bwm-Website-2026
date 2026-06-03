@@ -21,7 +21,7 @@ CORS(app)  # Frontend'in farklı port'tan istek atabilmesi için CORS açık
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',       # MySQL şifrenizi buraya yazın
+    'password': '2923',       # MySQL şifrenizi buraya yazın
     'database': 'bmw_bayi',
     'charset': 'utf8mb4'
 }
@@ -292,9 +292,9 @@ def get_fiyat_listesi():
         query = """
             SELECT
                 fl.id, fl.fiyat, fl.gecerlilik_tarihi,
-                m.id AS model_id, m.model_adi, m.yakit_tipi,
-                m.motor_bilgisi, m.motor_gucu, m.hiz_0_100, m.resim_yolu,
-                dp.id AS donanim_id, dp.paket_adi, dp.sanzisman, dp.ozellikler,
+                m.id AS model_id, m.model_adi, m.yakit_tipi, m.kasa_tipi,
+                m.resim_yolu,
+                dp.id AS donanim_id, dp.paket_adi, dp.motor AS motor_bilgisi, dp.motor_gucu, dp.hiz_0_100, dp.sanziman, dp.ozellikler,
                 s.id AS seri_id, s.seri_adi, s.seri_kodu
             FROM fiyat_listesi fl
             JOIN donanim_paketleri dp ON fl.donanim_id = dp.id
@@ -640,6 +640,84 @@ def set_password():
         if affected == 0:
             return error("Kullanıcı bulunamadı", 404)
         return success({"message": "Şifre güncellendi"})
+    except Exception as e:
+        return error(str(e), 500)
+
+# ==================================================================
+# 8. SEPET, FAVORİLER VE BAYİLER ENDPOINT'LERİ (SESSION BAZLI)
+# ==================================================================
+
+@app.route('/api/bayiler', methods=['GET'])
+def get_bayiler():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM bayiler")
+        bayiler = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return success(bayiler)
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/favoriler', methods=['GET', 'POST', 'DELETE'])
+def manage_favoriler():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        if request.method == 'GET':
+            session_id = request.args.get('session_id')
+            if not session_id: return error("session_id gerekli", 400)
+            cursor.execute("""
+                SELECT f.id as fav_id, m.*, s.seri_adi 
+                FROM favoriler f
+                JOIN modeller m ON f.model_id = m.id
+                JOIN seriler s ON m.seri_id = s.id
+                WHERE f.session_id = %s
+            """, (session_id,))
+            data = cursor.fetchall()
+            return success(data)
+        elif request.method == 'POST':
+            data = request.get_json()
+            cursor.execute("INSERT INTO favoriler (session_id, model_id) VALUES (%s, %s)", (data['session_id'], data['model_id']))
+            db.commit()
+            return success({"message": "Favorilere eklendi"})
+        elif request.method == 'DELETE':
+            fav_id = request.args.get('id')
+            cursor.execute("DELETE FROM favoriler WHERE id = %s", (fav_id,))
+            db.commit()
+            return success({"message": "Favorilerden silindi"})
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/sepet', methods=['GET', 'POST', 'DELETE'])
+def manage_sepet():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        if request.method == 'GET':
+            session_id = request.args.get('session_id')
+            if not session_id: return error("session_id gerekli", 400)
+            cursor.execute("""
+                SELECT sp.id as sepet_id, m.model_adi, m.resim_yolu, dp.paket_adi, fl.fiyat
+                FROM sepet sp
+                JOIN donanim_paketleri dp ON sp.donanim_id = dp.id
+                JOIN modeller m ON dp.model_id = m.id
+                LEFT JOIN fiyat_listesi fl ON fl.donanim_id = dp.id
+                WHERE sp.session_id = %s
+            """, (session_id,))
+            data = cursor.fetchall()
+            return success(data)
+        elif request.method == 'POST':
+            data = request.get_json()
+            cursor.execute("INSERT INTO sepet (session_id, donanim_id) VALUES (%s, %s)", (data['session_id'], data['donanim_id']))
+            db.commit()
+            return success({"message": "Sepete eklendi"})
+        elif request.method == 'DELETE':
+            sepet_id = request.args.get('id')
+            cursor.execute("DELETE FROM sepet WHERE id = %s", (sepet_id,))
+            db.commit()
+            return success({"message": "Sepetten silindi"})
     except Exception as e:
         return error(str(e), 500)
 
