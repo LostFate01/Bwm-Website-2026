@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMW Fiyat Listesi | BMW Türkiye</title>
+  <link rel="icon" href="../assets/images/BMW Logo.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .fiyat-listesi-container {
+      max-width: 1400px;
+      margin: 120px auto 50px auto;
+      padding: 0 5%;
+    }
+    .page-title {
+      font-weight: 300;
+      color: #262626;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #e6e6e6;
+      padding-bottom: 20px;
+    }
+    .series-section {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 50px;
+    }
+    .series-header {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .series-image {
+      width: 350px;
+      object-fit: contain;
+    }
+    .series-title {
+      font-weight: 300;
+      font-size: 2rem;
+      color: #262626;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    .price-table th {
+      background-color: #f2f2f2;
+      color: #262626;
+      font-weight: 600;
+      padding: 15px;
+      font-size: 14px;
+      border-bottom: 2px solid #e6e6e6;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .price-table td {
+      padding: 15px;
+      font-size: 14px;
+      color: #4d4d4d;
+      border-bottom: 1px solid #f2f2f2;
+      vertical-align: middle;
+    }
+    .price-table tr:hover td {
+      background-color: #fcfcfc;
+    }
+    .price-col {
+      font-weight: 600;
+      color: #1c69d4;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- YENİ ŞEFFAF BEYAZ NAVBAR (modeller.html ile aynı) -->
+  <nav class="navbar navbar-expand-xl custom-navbar navbar-light" style="background-color: transparent !important;">
+    <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e6e6e6; width: 100%;">
+        <!-- Logo -->
+        <a class="navbar-brand me-4" href="../index.html">
+          <img src="../assets/images/BMW Logo.png" alt="BMW Logo" style="width: 52px;">
+        </a>
+        <!-- Hamburger Menü Butonu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menü Linkleri ve İkonlar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-xl-0 main-nav-links" style="font-weight: 600;">
+            <li class="nav-item me-3"><a class="nav-link text-dark" href="../pages/modeller.html" style="text-transform: none !important; font-size: 14.5px !important;">Modeller</a></li>
+            <li class="nav-item me-3"><a class="nav-link text-dark" href="../pages/elektrikli.html" style="text-transform: none !important; font-size: 14.5px !important;">%100 Elektrikli Modeller <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+            <li class="nav-item me-3"><a class="nav-link text-dark" href="#" style="text-transform: none !important; font-size: 14.5px !important;">BMW'nizi Online Rezerve Edin</a></li>
+            <li class="nav-item me-3"><a class="nav-link text-dark" href="../pages/hizmetler.html" style="text-transform: none !important; font-size: 14.5px !important;">Online Hizmetler <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+            <li class="nav-item dropdown position-static">
+              <a class="nav-link text-dark" href="#" id="kesfedinDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: none !important; font-size: 14.5px !important;">BMW'yi Keşfedin <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a>
+              <div class="dropdown-menu w-100 mega-menu" aria-labelledby="kesfedinDropdown">
+                <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+                  <div class="row">
+                    <!-- Col 1 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">BMW ALPINA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Vision BMW ALPINA</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 2 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">BMW SERVİSLERİ</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Servis Çözümlerine Genel Bakış</a></li>
+                        <li><a href="#">BMW Prime</a></li>
+                        <li><a href="#">Geri Dönüşüm</a></li>
+                        <li><a href="#">BMW Yetkili Servislerini Bulun</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">SÜRDÜRÜLEBİLİRLİK</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Unlearners</a></li>
+                        <li><a href="#">Değişime Öncülük Et</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 3 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">GARANTİLER VE GÖNÜLLÜ GERİ ÇAĞIRMA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Garantisi</a></li>
+                        <li><a href="#">Garanti+ Güvence Paketi</a></li>
+                        <li><a href="geri-cagirma.html">Gönüllü Geri Çağırma</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">DİJİTAL HİZMETLER VE UYGULAMALAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW ConnectedDrive: Genel Bakış</a></li>
+                        <li><a href="#">BMW ConnectedDrive: Hüküm ve Koşullar</a></li>
+                        <li><a href="#">BMW iDrive</a></li>
+                        <li><a href="#">BMW Digital Key</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 4 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">PARÇA & AKSESUAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Orijinal BMW Aksesuarları</a></li>
+                        <li><a href="#">BMW x SipaBoards e-SUP</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">TEKNOLOJİ & İNOVASYON</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Symbiotic Drive</a></li>
+                        <li><a href="#">BMW Heart of Joy</a></li>
+                        <li><a href="#">BMW Sözlüğü</a></li>
+                        <li><a href="#">Yeni AB Lastik Etiketi</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 5 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">DİPLOMATİK, FİLO VE KURUMSAL SATIŞLAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="iletisim.html">İletişim Formu</a></li>
+                        <li><a href="#">Contact Form for English Speakers</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-center flex-row" style="gap: 15px;">
+              <li class="nav-item"><a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#authModal" style="font-size: 20px !important;"><i class="bi bi-person"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="#" style="font-size: 19px !important;"><i class="bi bi-cart3"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="bayiler.html" style="font-size: 18px !important;"><i class="bi bi-geo-alt"></i></a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- İÇERİK -->
+  <div class="fiyat-listesi-container">
+    <h1 class="page-title">27.12.2024 İtibarıyla BMW Fiyat Listesi</h1>
+    <div id="price-list-container">
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Yükleniyor...</span>
+        </div>
+        <p class="mt-3 text-muted">Fiyat listesi yükleniyor...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="modern-white-footer">
+  <!-- Newsletter Section -->
+  <div class="footer-newsletter">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center">
+        <img src="../assets/images/myBmw.svg" alt="BMW" style="width: 35px; margin-right: 15px;">
+        <span class="newsletter-text">Aylık gönderilen BMW e-bültenine kaydolun ve BMW dünyasından haberleri takip edin.</span>
+        <a href="ebulten-formu.html" class="newsletter-link ms-2">Şimdi kaydolun <i class="bi bi-chevron-right" style="font-size: 12px;"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links Section -->
+  <div class="footer-links-container">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="row">
+        <!-- Col 1 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">İletişim ve bilgi alma</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW Müşteri Desteği</a></li>
+            <li><a href="#">BMW Yetkili Satıcıları ve Yetkili Servisleri</a></li>
+            <li><a href="#">BMW Acil Yol Yardım Hattı</a></li>
+            <li><a href="#">Kataloglar</a></li>
+          </ul>
+          
+          <h5 class="footer-heading mt-5">İnceleyin ve satın alın</h5>
+          <ul class="footer-list">
+            <li><a href="fiyat-listesi.html">Fiyat listesi</a></li>
+            <li><a href="#">BMW'nizi online rezerve edin</a></li>
+            <li><a href="kampanya.html">Ayın özel teklifleri</a></li>
+            <li><a href="#">Test sürüşüne çıkın</a></li>
+          </ul>
+
+          <h5 class="footer-heading mt-5">Diğer web siteleri</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW Motorrad Türkiye</a></li>
+            <li><a href="#">BOM Akademi</a></li>
+            <li><a href="#">ChargeIQ</a></li>
+            <li><a href="#">Borusan Otomotiv</a></li>
+          </ul>
+        </div>
+        
+        <!-- Col 2 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Yardım ve Satış Sonrası Hizmetler</h5>
+          <ul class="footer-list">
+            <li><a href="#">Online servis randevusu alın</a></li>
+            <li><a href="#">My BMW uygulamasını indirin</a></li>
+            <li><a href="#">BMW ConnectedDrive</a></li>
+            <li><a href="#">BMW garantisi</a></li>
+            <li><a href="geri-cagirma.html">Gönüllü geri çağırma</a></li>
+          </ul>
+
+          <h5 class="footer-heading mt-5">Elektrikli BMW modelleri</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW elektrikli otomobiller</a></li>
+            <li><a href="#">Ev dışı şarj</a></li>
+            <li><a href="#">Evde şarj</a></li>
+            <li><a href="#">Menzil</a></li>
+            <li><a href="#">BMW plug-in hybrid otomobiller</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Modeller</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW X Serisi</a></li>
+            <li><a href="#">BMW 8 Serisi</a></li>
+            <li><a href="#">BMW 7 Serisi</a></li>
+            <li><a href="#">BMW 5 Serisi</a></li>
+            <li><a href="#">BMW 4 Serisi</a></li>
+            <li><a href="#">BMW 3 Serisi</a></li>
+            <li><a href="#">BMW 2 Serisi</a></li>
+            <li><a href="#">BMW 1 Serisi</a></li>
+            <li><a href="#">BMW M Serisi</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Online Hizmetler</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW'ni Bul</a></li>
+            <li><a href="#">BMW Dilediğiniz Yerde</a></li>
+            <li><a href="#">BMW Prime</a></li>
+            <li><a href="#">Online servis randevusu alın</a></li>
+            <li><a href="iletisim.html">BMW Canlı Destek</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="footer-bottom">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex justify-content-between align-items-end flex-wrap">
+        <div class="footer-legal mt-4">
+          <span class="copyright me-4">Copyright © BMW Türkiye 2026</span>
+          <a href="#" class="me-4">Tanımlama Bilgileri (Çerezler)</a>
+          <a href="#" class="me-4">Yasal Notlar</a>
+          <a href="#">Kişisel Verilerin Korunması</a>
+        </div>
+        <div class="footer-social mt-4">
+          <a href="#"><i class="bi bi-youtube"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-tiktok"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating Chat Icon -->
+  <a href="iletisim.html" class="floating-chat-icon">
+    <i class="bi bi-headset"></i>
+  </a>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Proje Kuralı gereği veritabanından veri alınmalı ancak henüz Backend kurulmadığı için
+    // geçici olarak aynı JSON yapısını burada bir sabit olarak simüle ediyoruz.
+    const apiData = [
+  {
+    "series_image": "../images/2 serisi.png",
+    "series_title": "Yeni BMW 2 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 220i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 230i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 240i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M250i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/3 serisi M3.png",
+    "series_title": "Yeni BMW 3 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 320i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 330i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 340i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M350i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/4 serisi coupe.png",
+    "series_title": "Yeni BMW 4 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 420i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 430i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 440i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M450i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/5 serisi i5M60.png",
+    "series_title": "Yeni BMW 5 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 520i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 530i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 540i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M550i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/7 serisi elektrik.png",
+    "series_title": "Yeni BMW 7 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW i7 M70",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW i7 xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW i7 M650 xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/8-serisi-coupe.png",
+    "series_title": "Yeni BMW 8 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 840i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 850i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M8 Competetion",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/X1.jpg",
+    "series_title": "Yeni BMW X1 Serisi",
+    "models": [
+      {
+        "model_name": "BMW X1 sDrive20i",
+        "package": "X-Line",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW X1 sDrive20i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW X1 sDrive30i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      }
+    ]
+  }
+];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById('price-list-container');
+      container.innerHTML = '';
+
+      apiData.forEach(series => {
+        let html = `
+          <div class="series-section">
+            <div class="series-header">
+              <img src="${series.series_image}" alt="${series.series_title}" class="series-image">
+              <h2 class="series-title">${series.series_title}</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="price-table">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Paket</th>
+                    <th>Şanzıman</th>
+                    <th>Motor</th>
+                    <th>Güç</th>
+                    <th>0-100 km/s</th>
+                    <th>Özellikler</th>
+                    <th>Fiyat (₺)</th>
+                  </tr>
+                </thead>
+                <tbody>
+        `;
+
+        series.models.forEach(model => {
+          html += `
+                  <tr>
+                    <td><strong>${model.model_name}</strong></td>
+                    <td>${model.package}</td>
+                    <td>${model.transmission}</td>
+                    <td>${model.engine}</td>
+                    <td>${model.power}</td>
+                    <td>${model.acceleration}</td>
+                    <td style="max-width: 250px;">${model.features}</td>
+                    <td class="price-col">${model.price}</td>
+                  </tr>
+          `;
+        });
+
+        html += `
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+        
+        container.innerHTML += html;
+      });
+    });
+  </script>
+  <script src="../assets/js/mega-menu.js"></script>
+
+    <!-- AUTH MODAL -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal-content">
+          <div class="auth-modal-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" class="auth-modal-logo">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="auth-modal-body">
+            
+            <!-- LOGIN VIEW -->
+            <div id="loginView" class="fade-in-active" style="display: block;">
+              <h3 class="auth-title">Giriş Yap</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Giriş Yap</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Devam Et
+              </button>
+              
+              <div class="auth-switch">
+                Hesabın yok mu? <a href="#" id="showRegisterBtn">Kayıt Ol</a>
+              </div>
+            </div>
+
+            <!-- REGISTER VIEW -->
+            <div id="registerView" style="display: none;">
+              <h3 class="auth-title">Kayıt Ol</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="text" class="auth-input" placeholder="Ad Soyad" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre Oluştur" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Kayıt Ol</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Kayıt Ol
+              </button>
+              
+              <div class="auth-switch">
+                Zaten hesabın var mı? <a href="#" id="showLoginBtn">Giriş Yap</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script src="../assets/js/auth-modal.js"></script>
+</body>
+</html>

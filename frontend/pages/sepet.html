@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sepetim / Konfigürasyonlarım</title>
+  <link rel="icon" href="../assets/images/BMW Logo.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body style="background-color: #f6f6f6;">
+  <nav class="navbar navbar-expand-lg custom-navbar navbar-dark bg-bmw-dark">
+    <div class="nav-inner-container">
+      <a class="navbar-brand" href="../index.html">
+        <img class="bmw-main-logo" src="../assets/images/website-navbaar-logo.png" alt="BMW Logo">
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mt-5 mb-5">
+    <h2 class="mb-4" style="font-weight: 300;">Sepetim (Hazırlanan Araçlar)</h2>
+    <div class="row">
+      <div class="col-md-8" id="sepetListesi">
+        <div class="text-center py-5">
+          <div class="spinner-border text-secondary" role="status"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title">Sipariş Özeti</h5>
+            <hr>
+            <div class="d-flex justify-content-between mb-3">
+              <span>Toplam Tutar:</span>
+              <strong id="toplamTutar">₺0</strong>
+            </div>
+            <button class="btn btn-bmw-primary w-100 m-0">Satın Al / Ön Talep</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let session_id = localStorage.getItem('bmw_session_id');
+    if(!session_id) {
+        session_id = 'sess_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('bmw_session_id', session_id);
+    }
+
+    function loadSepet() {
+      fetch('http://localhost:5000/api/sepet?session_id=' + session_id)
+        .then(res => res.json())
+        .then(res => {
+          const liste = document.getElementById('sepetListesi');
+          liste.innerHTML = '';
+          let toplam = 0;
+          if(res.success && res.data.length > 0) {
+            res.data.forEach(item => {
+              toplam += parseFloat(item.fiyat);
+              const formatliFiyat = new Intl.NumberFormat('en-US').format(item.fiyat);
+              liste.innerHTML += `
+                <div class="card mb-3 shadow-sm border-0">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="${item.resim_yolu}" class="img-fluid rounded-start h-100 object-fit-cover" alt="${item.model_adi}">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body position-relative">
+                        <button class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-3" onclick="removeSepet(${item.sepet_id})"><i class="bi bi-x-lg"></i></button>
+                        <h5 class="card-title">${item.model_adi}</h5>
+                        <p class="card-text text-muted mb-1">Donanım: ${item.paket_adi}</p>
+                        <h5 class="card-text mt-3 fw-bold">₺${formatliFiyat}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+            });
+            document.getElementById('toplamTutar').innerText = '₺' + new Intl.NumberFormat('en-US').format(toplam);
+          } else {
+             liste.innerHTML = '<div class="alert alert-secondary">Sepetinizde araç bulunmuyor.</div>';
+             document.getElementById('toplamTutar').innerText = '₺0';
+          }
+        });
+    }
+
+    function removeSepet(id) {
+        fetch('http://localhost:5000/api/sepet?id=' + id, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(() => loadSepet());
+    }
+
+    document.addEventListener("DOMContentLoaded", loadSepet);
+  </script>
+</body>
+</html>

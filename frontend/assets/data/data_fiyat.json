@@ -1,0 +1,294 @@
+[
+  {
+    "series_image": "../images/2 serisi.png",
+    "series_title": "Yeni BMW 2 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 220i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 230i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 240i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M250i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/3 serisi M3.png",
+    "series_title": "Yeni BMW 3 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 320i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 330i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 340i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M350i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/4 serisi coupe.png",
+    "series_title": "Yeni BMW 4 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 420i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 430i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 440i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M450i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/5 serisi i5M60.png",
+    "series_title": "Yeni BMW 5 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 520i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "184 HP",
+        "acceleration": "7.9 saniye",
+        "features": "LED farlar, Deri döşeme, iDrive 7.0, Anahtarsız giriş",
+        "price": "1.150.000 ₺"
+      },
+      {
+        "model_name": "BMW 530i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 540i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M550i xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/7 serisi elektrik.png",
+    "series_title": "Yeni BMW 7 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW i7 M70",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW i7 xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW i7 M650 xDrive",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/8-serisi-coupe.png",
+    "series_title": "Yeni BMW 8 Serisi Sedan",
+    "models": [
+      {
+        "model_name": "BMW 840i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW 850i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW M8 Competetion",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "4.4L V8 (Twin-Turbo) Benzinli",
+        "power": "462 HP",
+        "acceleration": "3.8 saniye",
+        "features": "Laser ışık, M Sport paket, 360 derece kamera",
+        "price": "2.000.000 ₺"
+      }
+    ]
+  },
+  {
+    "series_image": "../images/X1.jpg",
+    "series_title": "Yeni BMW X1 Serisi",
+    "models": [
+      {
+        "model_name": "BMW X1 sDrive20i",
+        "package": "X-Line",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      },
+      {
+        "model_name": "BMW X1 sDrive20i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "3.0L Benzinli",
+        "power": "340 HP",
+        "acceleration": "4.9 saniye",
+        "features": "Laser farlar, Harman Kardon ses sistemi, M Sport frenler",
+        "price": "1.500.000 ₺"
+      },
+      {
+        "model_name": "BMW X1 sDrive30i",
+        "package": "M Sport",
+        "transmission": "8 İleri Otomatik",
+        "engine": "2.0L Benzinli",
+        "power": "252 HP",
+        "acceleration": "6.0 saniye",
+        "features": "LED farlar, 19\" jantlar, Apple CarPlay, Adaptif cruise",
+        "price": "1.300.000 ₺"
+      }
+    ]
+  }
+]

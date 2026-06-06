@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Kampanyaları | BMW Türkiye</title>
+    <link rel="icon" href="../assets/images/BMW Logo.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+    <div class="img-bg-container" style="position: relative; height: 100vh; overflow: hidden; background-color: #000;">
+        <img src="../assets/images/bmw-snow.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+        <div class="ontop-img-text" style="pointer-events: none;">
+            <h1 class="main-title" style="font-size: 60px; font-weight: 300;">BMW RUHU: ASALETİN ADI</h1>
+            <p class="description" style="font-size: 20px; font-weight: 400; max-width: 800px; margin-top: 15px;">BMW modellerinde size özel teklifler ve finansman koşulları.</p>
+        </div>
+    </div>
+
+    <!-- YENİ ŞEFFAF VE ZARİF NAVBAR -->
+    <nav class="navbar navbar-expand-xl custom-navbar navbar-dark" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; background-color: transparent !important;">
+      <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.25); width: 100%;">
+          <!-- Logo -->
+          <a class="navbar-brand me-4" href="../index.html">
+            <img src="../assets/images/BMW_White_Logo.svg.asset.1670245093434.svg" alt="BMW Logo" style="width: 52px;">
+          </a>
+          <!-- Hamburger Menü Butonu -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Menü Linkleri ve İkonlar -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0 main-nav-links" style="font-weight: 600;">
+              <li class="nav-item me-3"><a class="nav-link text-white" href="modeller.html" style="text-transform: none !important; font-size: 14.5px !important;">Modeller</a></li>
+              <li class="nav-item me-3"><a class="nav-link text-white" href="elektrikli.html" style="text-transform: none !important; font-size: 14.5px !important;">%100 Elektrikli Modeller <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+              <li class="nav-item me-3"><a class="nav-link text-white" href="#" style="text-transform: none !important; font-size: 14.5px !important;">BMW'nizi Online Rezerve Edin</a></li>
+              <li class="nav-item me-3"><a class="nav-link text-white" href="hizmetler.html" style="text-transform: none !important; font-size: 14.5px !important;">Online Hizmetler <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+              <li class="nav-item dropdown position-static">
+              <a class="nav-link text-white" href="#" id="kesfedinDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: none !important; font-size: 14.5px !important;">BMW'yi Keşfedin <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a>
+              <div class="dropdown-menu w-100 mega-menu" aria-labelledby="kesfedinDropdown">
+                <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+                  <div class="row">
+                    <!-- Col 1 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">BMW ALPINA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Vision BMW ALPINA</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 2 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">BMW SERVİSLERİ</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Servis Çözümlerine Genel Bakış</a></li>
+                        <li><a href="#">BMW Prime</a></li>
+                        <li><a href="#">Geri Dönüşüm</a></li>
+                        <li><a href="#">BMW Yetkili Servislerini Bulun</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">SÜRDÜRÜLEBİLİRLİK</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Unlearners</a></li>
+                        <li><a href="#">Değişime Öncülük Et</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 3 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">GARANTİLER VE GÖNÜLLÜ GERİ ÇAĞIRMA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Garantisi</a></li>
+                        <li><a href="#">Garanti+ Güvence Paketi</a></li>
+                        <li><a href="geri-cagirma.html">Gönüllü Geri Çağırma</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">DİJİTAL HİZMETLER VE UYGULAMALAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW ConnectedDrive: Genel Bakış</a></li>
+                        <li><a href="#">BMW ConnectedDrive: Hüküm ve Koşullar</a></li>
+                        <li><a href="#">BMW iDrive</a></li>
+                        <li><a href="#">BMW Digital Key</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 4 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">PARÇA & AKSESUAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Orijinal BMW Aksesuarları</a></li>
+                        <li><a href="#">BMW x SipaBoards e-SUP</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">TEKNOLOJİ & İNOVASYON</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Symbiotic Drive</a></li>
+                        <li><a href="#">BMW Heart of Joy</a></li>
+                        <li><a href="#">BMW Sözlüğü</a></li>
+                        <li><a href="#">Yeni AB Lastik Etiketi</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 5 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">DİPLOMATİK, FİLO VE KURUMSAL SATIŞLAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="iletisim.html">İletişim Formu</a></li>
+                        <li><a href="#">Contact Form for English Speakers</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-center flex-row" style="gap: 15px;">
+              <li class="nav-item"><a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#authModal" style="font-size: 20px !important;"><i class="bi bi-person"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#" style="font-size: 19px !important;"><i class="bi bi-cart3"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="bayiler.html" style="font-size: 18px !important;"><i class="bi bi-geo-alt"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5 pt-5 mb-5 pb-5">
+        <div class="row">
+            <div class="col-12 mt-4 text-center text-md-start">
+                <h1 style="font-weight: 300; font-size: 40px; margin-bottom: 20px;">Hayalinizdeki BMW modeli sizi bekliyor.</h1>
+                <p style="color: #666; font-size: 18px; line-height: 1.6;">Her BMW, onu yola çıkaracak bir ruh eşini arar. Hayalinizdeki BMW modelini keşfedin, benzersiz sürüş deneyimini yaşayın.</p>
+                <p style="color: #666; font-size: 18px; line-height: 1.6;">BMW, şimdi Borusan Otomotiv BMW Yetkili Satıcılarında, size özel avantajlar ve finansman seçenekleriyle sizi bekliyor. Esnek ödeme fırsatlarından yararlanmak ve detaylı bilgi almak için formumuzu doldurun, sizi arayalım.</p>
+                
+                
+                <div class="row">
+                    <div class="kampanya-img-sedan">
+                        <img src="../assets/images/bmw-transparent.png" alt="" class="kampanya-img">
+                    </div>
+
+                    <h2 style="font-weight: 300;">BMW 3 Serisi Sedan</h2>
+                    <p>BMW 320i Sedan Modeli için takas desteği veya tüzel kişiler için ilgili finansman kuruluşunca sunulan kredi
+                        finansmanı seçeneklerinden birini değerlendirin.
+                    </p>
+                    <div class="mt-4"></div>
+                    <table class="kampanya-table">
+                        <thead><h2 style="font-weight: 300;">KREDİ FİNANSMAN SEÇENEKLERİ:</h2></thead>
+                        <tr class="kampanya-tr">
+                            <th class="kampanya-th">Kredi Tutarı</th>
+                            <th class="kampanya-th">Vade</th>
+                            <th class="kampanya-th">Faiz Oranı</th>
+                            <th class="kampanya-th">Aylık Ödeme Tutarı</th>
+                        </tr>
+                        <tr class="kampanya-tr">
+                            <td class="kampanya-td">2.500.000 TL</td>
+                            <td class="kampanya-td">6 Ay</td>
+                            <td class="kampanya-td">%0,00</td>
+                            <td class="kampanya-td">416.667TL</td>
+                        </tr>
+                        <tr class="kampanya-tr">
+                            <td class="kampanya-td">2.500.000 TL</td>
+                            <td class="kampanya-td">12 Ay</td>
+                            <td class="kampanya-td">%1,99</td>
+                            <td class="kampanya-td">237.700TL</td>
+                        </tr>
+                        <tr class="kampanya-tr">
+                            <td class="kampanya-td">2.500.000 TL</td>
+                            <td class="kampanya-td">24 Ay</td>
+                            <td class="kampanya-td">%3,19</td>
+                            <td class="kampanya-td">153.231TL</td>
+                        </tr>
+                    </table>
+                    <div class="mt-4"></div>
+                    <table class="kampanya-table">
+                        <thead><h2 style="font-weight: 300;">TAKAS SEÇENEĞİ:</h2></thead>
+                        <tr class="kampanya-tr">
+                            <th class="kampanya-th">Model</th>
+                            <th class="kampanya-th">Takas Desteği</th>
+                        </tr>
+                        <tr class="kampanya-tr">
+                            <td class="kampanya-td">BMW 320i Sedan(2017)</td>
+                            <td class="kampanya-td">500.000 TL</td>
+                        </tr>
+                    </table>
+                </div>
+                <button class="btn-bmw-primary mt-5">Modeli İnceleyin</button>
+            </div>
+            <div class="mt-5" id="uyari">
+                <small>*Kampanya, 01.06.2026 ile 30.06.2026 tarihleri arasında geçerli olup 2026 model yılına ait BMW 320i Sedan
+                    modelini kapsamaktadır ve kampanyaya katılmayı kabul ve tercih eden BMW Yetkili Satıcıları'nda geçerli bulunmaktadır.
+                    Takas desteği bu model için vergiler dahil 500.000 TL'dir. Tüzel kişilerce anlaşmalı finansal kuruluşlara yapılacak
+                    taşıt kredisi başvurularında 6 aya kadar %0, 12 aya kadar %1,99 ve 24 aya kadar ise %3,19 faiz kredi imkanı sağlanmakta
+                    olup maksimum kredi tutarı tabloda gösterilmektedir. Premium Kasko satın alınmadan kullandırılan kampanyalı 
+                    faiz oranı değişmektedir. Yasal limitler dahilinde kredi vadesi ve kredi tutarları esnetilebilecektir. Tahsis ücreti,
+                    kredi kullanımı için bir kereye mahsus kredi kuruluşu tarafından tahsil edilecek olup kredi ve finansman şart ve
+                    seçenekleri Borusan Otomotiv Premium ile çözüm iş birliği içindeki kredi kuruluşu tarafından sağlanmaktadır.
+                    Borusan Otomotiv şirketleri kredinin başvuru ve değerlendirme sürecinde söz ve sorumluluk sahibi değildir.
+                    Borusan Otomotiv her zaman için kampanya şartlarını değiştirme ve/veya kampanyayı iptal etme hakkına sahiptir.
+                    Finansman desteği ve takas desteği aynı anda kullanılamamaktadır.</small>
+            </div>
+        </div>
+        <div class="mt-5 pt-5">
+            <h1 style="font-weight: 300; font-size: 36px; margin-bottom: 30px;">BİLGİ VE TEKLİF ALIN.</h1>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label text-muted" for="Ad">Ad *</label>
+                    <input class="form-control" type="text" id="Ad" required style="border-radius: 0; padding: 12px; border: 1px solid #ccc;">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label text-muted" for="Soyad">Soyad *</label>
+                    <input class="form-control" type="text" id="Soyad" required style="border-radius: 0; padding: 12px; border: 1px solid #ccc;">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label text-muted" for="Mail">E-Posta *</label>
+                    <input class="form-control" type="email" id="Mail" required style="border-radius: 0; padding: 12px; border: 1px solid #ccc;">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label text-muted" for="GSM">GSM *</label>
+                    <input class="form-control" type="tel" id="GSM" required pattern="^\+90\d{3}\d{3}\d{4}$" placeholder="+905554443322" style="border-radius: 0; padding: 12px; border: 1px solid #ccc;">
+                </div>
+            </div>
+
+            <div class="mt-4 pt-2">
+                <small class="text-muted">Kişisel verilerinizin işlenmesi hakkında aydınlatma metnini <a href="#" class="text-dark">buradan</a> inceleyebilirsiniz.</small>
+                <h5 class="mt-4 mb-3" style="font-weight: 400; font-size: 18px;">Kişisel Verilerin İşlenmesi Hakkında Rıza Metni</h5>
+                <textarea class="form-control" id="message" rows="5" readonly style="border-radius: 0; font-size: 14px; background-color: #f9f9f9; resize: none; border: 1px solid #e6e6e6;">
+Sizinle daha kişisel bir deneyim sunabilmek adına, tarafınıza özel fırsatlar geliştirebilmek için paylaştığınız kişisel verileri topluyoruz. Örneğin, eğitim durumunuz, mesleğiniz ve ilgi alanlarınız doğrultusunda size özel kampanyalar oluşturup, yalnızca sizin için hazırlanmış fırsatlardan faydalanmanızı sağlıyoruz. Bu bilgileri bizimle paylaşmanız tamamen gönüllülük esasına dayalıdır.
+Kişisel verilerinizin işlenmesiyle ilgili onay vermek isterseniz, aşağıdaki kutucuğu işaretleyebilirsiniz.
+
+İşlenecek Kişisel Veriler   
+• Kişisel Veriler: Eğitim durumu, meslek, ilgi alanları, müşteri işlem bilgileri, satın alma geçmişi, anket ve kampanyalarımıza verdiğiniz yanıtlar, kimlik ve iletişim bilgileri.
+
+Verilerin İşlenme Amaçları
+• Deneyimi Kişiselleştirmek: Size özel ürün ve hizmet önerileri sunmak.
+• Pazarlama ve Analiz: Müşteri ihtiyaçlarını daha iyi anlayarak, profilinizi çıkararak size uygun hizmetleri sunmak.
+• Veri Analizleri: Pazarlama stratejilerimizi şekillendirmek ve etkinliğini ölçmek.
+
+Verilerin Paylaşılacağı Taraflar           
+• İş Ortakları ve Tedarikçiler: Destek aldığımız tedarikçiler, iş ortaklarımız, grup şirketlerimiz ve üreticiler.
+                </textarea>
+            </div>
+
+            <div id="radio-area" class="mt-4">
+                <div id="radio1" class="mb-4">
+                    <label class="form-label mb-3"><small>* Kişisel verilerinizi yukarıdaki Rıza Metninde belirtilen kapsamda işlememizi onaylıyor musunuz?</small></label>
+                    <div class="d-flex gap-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="onayver" name="group2">
+                            <label class="form-check-label" for="onayver">Evet, Onaylıyorum.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="onayverme" name="group2">
+                            <label class="form-check-label" for="onayverme">Hayır, Onaylamıyorum.</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="radio2" class="mb-4">
+                    <label class="form-label mb-3"><small>Borusan Otomotiv İthalat ve Dağıtım A.Ş.'nin tanıtım ve kampanyalarından haberdar olmak için ileti almak ister misiniz?</small></label>
+                    <div class="d-flex gap-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="Evet" name="group1">
+                            <label class="form-check-label" for="Evet">Evet</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="Hayır" name="group1">
+                            <label class="form-check-label" for="Hayır">Hayır</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-muted mb-4"><small>(*) işareti olan alanlar zorunludur.</small></p>
+            <button class="btn-bmw-outline w-100 py-3 mt-2 destek-form-button" style="max-width: 300px; border: 1px solid #262626; color: #262626; transition: 0.3s; background-color: transparent;" onmouseover="this.style.backgroundColor='#262626'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#262626'">GÖNDER</button>
+        </div>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/mega-menu.js"></script>
+
+    <!-- AUTH MODAL -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal-content">
+          <div class="auth-modal-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" class="auth-modal-logo">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="auth-modal-body">
+            
+            <!-- LOGIN VIEW -->
+            <div id="loginView" class="fade-in-active" style="display: block;">
+              <h3 class="auth-title">Giriş Yap</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Giriş Yap</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Devam Et
+              </button>
+              
+              <div class="auth-switch">
+                Hesabın yok mu? <a href="#" id="showRegisterBtn">Kayıt Ol</a>
+              </div>
+            </div>
+
+            <!-- REGISTER VIEW -->
+            <div id="registerView" style="display: none;">
+              <h3 class="auth-title">Kayıt Ol</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="text" class="auth-input" placeholder="Ad Soyad" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre Oluştur" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Kayıt Ol</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Kayıt Ol
+              </button>
+              
+              <div class="auth-switch">
+                Zaten hesabın var mı? <a href="#" id="showLoginBtn">Giriş Yap</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script src="../assets/js/auth-modal.js"></script>
+</body>
+
+<footer class="modern-white-footer">
+  <!-- Newsletter Section -->
+  <div class="footer-newsletter">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center">
+        <img src="../assets/images/myBmw.svg" alt="BMW" style="width: 35px; margin-right: 15px;">
+        <span class="newsletter-text">Aylık gönderilen BMW e-bültenine kaydolun ve BMW dünyasından haberleri takip edin.</span>
+        <a href="ebulten-formu.html" class="newsletter-link ms-2">Şimdi kaydolun <i class="bi bi-chevron-right" style="font-size: 12px;"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links Section -->
+  <div class="footer-links-container">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="row">
+        <!-- Col 1 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">İletişim ve bilgi alma</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW Müşteri Desteği</a></li>
+            <li><a href="#">BMW Yetkili Satıcıları ve Yetkili Servisleri</a></li>
+            <li><a href="#">BMW Acil Yol Yardım Hattı</a></li>
+            <li><a href="#">Kataloglar</a></li>
+          </ul>
+          
+          <h5 class="footer-heading mt-5">İnceleyin ve satın alın</h5>
+          <ul class="footer-list">
+            <li><a href="fiyat-listesi.html">Fiyat listesi</a></li>
+            <li><a href="#">BMW'nizi online rezerve edin</a></li>
+            <li><a href="kampanya.html">Ayın özel teklifleri</a></li>
+            <li><a href="#">Test sürüşüne çıkın</a></li>
+          </ul>
+
+          <h5 class="footer-heading mt-5">Diğer web siteleri</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW Motorrad Türkiye</a></li>
+            <li><a href="#">BOM Akademi</a></li>
+            <li><a href="#">ChargeIQ</a></li>
+            <li><a href="#">Borusan Otomotiv</a></li>
+          </ul>
+        </div>
+        
+        <!-- Col 2 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Yardım ve Satış Sonrası Hizmetler</h5>
+          <ul class="footer-list">
+            <li><a href="#">Online servis randevusu alın</a></li>
+            <li><a href="#">My BMW uygulamasını indirin</a></li>
+            <li><a href="#">BMW ConnectedDrive</a></li>
+            <li><a href="#">BMW garantisi</a></li>
+            <li><a href="geri-cagirma.html">Gönüllü geri çağırma</a></li>
+          </ul>
+
+          <h5 class="footer-heading mt-5">Elektrikli BMW modelleri</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW elektrikli otomobiller</a></li>
+            <li><a href="#">Ev dışı şarj</a></li>
+            <li><a href="#">Evde şarj</a></li>
+            <li><a href="#">Menzil</a></li>
+            <li><a href="#">BMW plug-in hybrid otomobiller</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Modeller</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW X Serisi</a></li>
+            <li><a href="#">BMW 8 Serisi</a></li>
+            <li><a href="#">BMW 7 Serisi</a></li>
+            <li><a href="#">BMW 5 Serisi</a></li>
+            <li><a href="#">BMW 4 Serisi</a></li>
+            <li><a href="#">BMW 3 Serisi</a></li>
+            <li><a href="#">BMW 2 Serisi</a></li>
+            <li><a href="#">BMW 1 Serisi</a></li>
+            <li><a href="#">BMW M Serisi</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="footer-heading">Online Hizmetler</h5>
+          <ul class="footer-list">
+            <li><a href="#">BMW'ni Bul</a></li>
+            <li><a href="#">BMW Dilediğiniz Yerde</a></li>
+            <li><a href="#">BMW Prime</a></li>
+            <li><a href="#">Online servis randevusu alın</a></li>
+            <li><a href="iletisim.html">BMW Canlı Destek</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="footer-bottom">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex justify-content-between align-items-end flex-wrap">
+        <div class="footer-legal mt-4">
+          <span class="copyright me-4">Copyright © BMW Türkiye 2026</span>
+          <a href="#" class="me-4">Tanımlama Bilgileri (Çerezler)</a>
+          <a href="#" class="me-4">Yasal Notlar</a>
+          <a href="#">Kişisel Verilerin Korunması</a>
+        </div>
+        <div class="footer-social mt-4">
+          <a href="#"><i class="bi bi-youtube"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-tiktok"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating Chat Icon -->
+  <a href="iletisim.html" class="floating-chat-icon">
+    <i class="bi bi-headset"></i>
+  </a>
+</footer>
+
+  <script>
+    document.querySelector(".destek-form-button").addEventListener("click", function(event) {
+      event.preventDefault(); // Sayfanın yenilenmesini engelliyo
+  
+      const ad = document.getElementById("Ad").value.trim();
+      const soyad = document.getElementById("Soyad").value.trim();
+      const email = document.getElementById("Mail").value;
+      let gsm = document.getElementById("GSM").value.trim();
+      const onay1 = document.getElementById("onayver").checked; // Kişisel veri onayını sorgulamak için
+  
+      let valid = true;
+  
+      // Ad ve Soyad doğrulaması
+      if (!ad || !soyad || !email || !gsm) {
+        alert("Lütfen tüm alanları doldurduğunuzdan emin olun.");
+        valid = false;
+      }
+  
+      // Eğer tüm input'lar doğru şekilde doldurulduysa kişisel veri onay sorgulama yeri
+      if (valid) {
+        if (!onay1) {
+          alert("Lütfen kişisel verilerinizi işlenmesine onay verin.");
+          valid = false;
+        }
+      }
+  
+      // Eğer her şey doğruysa formu göndermek için
+      if (valid) {
+        // Formu alert ile müşteriye gösteriyoruz
+        alert("Şu anda tüm Canlı Destek ekibimiz yoğun. Bilgi veya Teklif talebiniz başarıyla alınmıştır. Ekibimiz en kısa sürede sizinle iletişime geçecektir.");
+      }
+    });
+  </script>
+</html>

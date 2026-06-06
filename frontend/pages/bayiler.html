@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMW Bayileri</title>
+  <link rel="icon" href="../assets/images/BMW Logo.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body style="background-color: #f6f6f6;">
+  <nav class="navbar navbar-expand-lg custom-navbar navbar-dark bg-bmw-dark">
+    <div class="nav-inner-container">
+      <a class="navbar-brand" href="../index.html">
+        <img class="bmw-main-logo" src="../assets/images/website-navbaar-logo.png" alt="BMW Logo">
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mt-5 mb-5">
+    <h2 class="mb-4" style="font-weight: 300;">Yetkili BMW Bayileri</h2>
+    <div class="row" id="bayiGrid">
+      <div class="col-12 text-center py-5">
+        <div class="spinner-border text-secondary" role="status"></div>
+        <p class="mt-2 text-muted">Bayiler yükleniyor...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch('http://localhost:5000/api/bayiler')
+        .then(res => res.json())
+        .then(res => {
+          const grid = document.getElementById('bayiGrid');
+          grid.innerHTML = '';
+          if(res.success && res.data.length > 0) {
+            res.data.forEach(bayi => {
+              grid.innerHTML += `
+                <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="bi bi-geo-alt text-primary"></i> ${bayi.bayi_adi}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">${bayi.sehir}</h6>
+                      <p class="card-text">${bayi.adres}</p>
+                      <p class="card-text fw-bold"><i class="bi bi-telephone"></i> ${bayi.telefon}</p>
+                    </div>
+                  </div>
+                </div>`;
+            });
+          } else {
+             grid.innerHTML = '<div class="col-12"><p class="text-muted">Kayıtlı bayi bulunamadı.</p></div>';
+          }
+        });
+    });
+  </script>
+</body>
+</html>
