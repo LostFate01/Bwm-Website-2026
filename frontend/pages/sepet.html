@@ -35,7 +35,7 @@
               <span>Toplam Tutar:</span>
               <strong id="toplamTutar">₺0</strong>
             </div>
-            <button class="btn btn-bmw-primary w-100 m-0">Satın Al / Ön Talep</button>
+            <button id="satinAlBtn" onclick="siparisOlustur()" class="btn btn-bmw-primary w-100 m-0">Satın Al / Ön Talep</button>
           </div>
         </div>
       </div>
@@ -89,6 +89,40 @@
         fetch('http://localhost:5000/api/sepet?id=' + id, { method: 'DELETE' })
             .then(res => res.json())
             .then(() => loadSepet());
+    }
+
+    function siparisOlustur() {
+        const musteri_id = localStorage.getItem('musteri_id');
+        if (!musteri_id) {
+            alert("Sipariş vermek için lütfen ana sayfadan veya modeller sayfasından müşteri girişi yapınız.");
+            return;
+        }
+        
+        const btn = document.getElementById('satinAlBtn');
+        btn.disabled = true;
+        btn.innerHTML = 'İşleniyor...';
+
+        fetch('http://localhost:5000/api/siparis_olustur', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session_id: session_id, musteri_id: musteri_id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                alert("Siparişiniz başarıyla oluşturuldu! Araçlar siparişler bölümüne taşındı.");
+                loadSepet();
+            } else {
+                alert("Hata: " + data.error);
+            }
+            btn.disabled = false;
+            btn.innerHTML = 'SATIN AL / ÖN TALEP';
+        })
+        .catch(err => {
+            alert("Bir hata oluştu.");
+            btn.disabled = false;
+            btn.innerHTML = 'SATIN AL / ÖN TALEP';
+        });
     }
 
     document.addEventListener("DOMContentLoaded", loadSepet);

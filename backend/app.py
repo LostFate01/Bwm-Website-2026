@@ -21,7 +21,7 @@ CORS(app)  # Frontend'in farklı port'tan istek atabilmesi için CORS açık
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '2923',       # MySQL şifrenizi buraya yazın
+    'password': '',       # MySQL şifrenizi buraya yazın
     'database': 'bmw_bayi',
     'charset': 'utf8mb4'
 }
@@ -643,6 +643,61 @@ def set_password():
     except Exception as e:
         return error(str(e), 500)
 
+@app.route('/api/auth/musteri-kayit', methods=['POST'])
+def musteri_kayit():
+    try:
+        data = request.get_json()
+        if not data or not data.get('ad_soyad') or not data.get('email') or not data.get('sifre'):
+            return error("Tüm alanlar zorunludur", 400)
+        
+        sifre = data['sifre'].encode('utf-8')
+        hashed = bcrypt.hashpw(sifre, bcrypt.gensalt(12)).decode('utf-8')
+        
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute(
+            "INSERT INTO musteriler (ad_soyad, email, sifre_hash) VALUES (%s, %s, %s)",
+            (data['ad_soyad'], data['email'], hashed)
+        )
+        db.commit()
+        new_id = cursor.lastrowid
+        cursor.close()
+        db.close()
+        return success({"id": new_id, "message": "Kayıt başarılı!"}, 201)
+    except mysql.connector.IntegrityError:
+        return error("Bu e-posta adresi zaten kullanılıyor", 400)
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/auth/musteri-login', methods=['POST'])
+def musteri_login():
+    try:
+        data = request.get_json()
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM musteriler WHERE email=%s", (data.get('email'),))
+        musteri = cursor.fetchone()
+        
+        if not musteri:
+            return error("E-posta veya şifre hatalı", 401)
+            
+        sifre_bytes = data.get('sifre', '').encode('utf-8')
+        hash_bytes = musteri['sifre_hash'].encode('utf-8')
+        
+        if not bcrypt.checkpw(sifre_bytes, hash_bytes):
+            return error("E-posta veya şifre hatalı", 401)
+            
+        cursor.close()
+        db.close()
+        return success({
+            "id": musteri['id'],
+            "ad_soyad": musteri['ad_soyad'],
+            "email": musteri['email'],
+            "message": "Giriş başarılı"
+        })
+    except Exception as e:
+        return error(str(e), 500)
+
 # ==================================================================
 # 8. SEPET, FAVORİLER VE BAYİLER ENDPOINT'LERİ (SESSION BAZLI)
 # ==================================================================
@@ -679,7 +734,12 @@ def manage_favoriler():
             return success(data)
         elif request.method == 'POST':
             data = request.get_json()
-            cursor.execute("INSERT INTO favoriler (session_id, model_id) VALUES (%s, %s)", (data['session_id'], data['model_id']))
+            session_id = data.get('session_id')
+            musteri_id = data.get('musteri_id', None)
+            cursor.execute(
+                "INSERT INTO favoriler (session_id, musteri_id, model_id) VALUES (%s, %s, %s)",
+                (session_id, musteri_id, data['model_id'])
+            )
             db.commit()
             return success({"message": "Favorilere eklendi"})
         elif request.method == 'DELETE':
@@ -710,7 +770,12 @@ def manage_sepet():
             return success(data)
         elif request.method == 'POST':
             data = request.get_json()
-            cursor.execute("INSERT INTO sepet (session_id, donanim_id) VALUES (%s, %s)", (data['session_id'], data['donanim_id']))
+            session_id = data.get('session_id')
+            musteri_id = data.get('musteri_id', None)
+            cursor.execute(
+                "INSERT INTO sepet (session_id, musteri_id, donanim_id) VALUES (%s, %s, %s)",
+                (session_id, musteri_id, data['donanim_id'])
+            )
             db.commit()
             return success({"message": "Sepete eklendi"})
         elif request.method == 'DELETE':
@@ -718,6 +783,102 @@ def manage_sepet():
             cursor.execute("DELETE FROM sepet WHERE id = %s", (sepet_id,))
             db.commit()
             return success({"message": "Sepetten silindi"})
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/admin/sepet_ozet', methods=['GET'])
+def get_sepet_ozet():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("""
+            SELECT sp.id, sp.olusturma_tarihi, mus.ad_soyad, mus.email, m.model_adi, dp.paket_adi, fl.fiyat
+            FROM sepet sp
+            LEFT JOIN musteriler mus ON sp.musteri_id = mus.id
+            JOIN donanim_paketleri dp ON sp.donanim_id = dp.id
+            JOIN modeller m ON dp.model_id = m.id
+            LEFT JOIN fiyat_listesi fl ON fl.donanim_id = dp.id
+            ORDER BY sp.olusturma_tarihi DESC
+        """)
+        data = cursor.fetchall()
+        for d in data:
+            if d.get('olusturma_tarihi'):
+                d['olusturma_tarihi'] = d['olusturma_tarihi'].strftime('%d.%m.%Y %H:%M')
+            if d.get('fiyat'):
+                d['fiyat'] = float(d['fiyat'])
+        cursor.close()
+        db.close()
+        return success(data)
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/siparis_olustur', methods=['POST'])
+def siparis_olustur():
+    try:
+        data = request.get_json()
+        musteri_id = data.get('musteri_id')
+        session_id = data.get('session_id')
+        
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        
+        # Sepetteki ürünleri al
+        cursor.execute("""
+            SELECT sp.id, sp.donanim_id, fl.fiyat 
+            FROM sepet sp
+            LEFT JOIN fiyat_listesi fl ON fl.donanim_id = sp.donanim_id
+            WHERE sp.musteri_id = %s OR sp.session_id = %s
+        """, (musteri_id, session_id))
+        sepet_items = cursor.fetchall()
+        
+        if not sepet_items:
+            return error("Sepetiniz boş.", 400)
+            
+        # Siparişler tablosuna taşı
+        for item in sepet_items:
+            tutar = item['fiyat'] if item['fiyat'] else 0
+            # Müşteri girişi zorunlu, değilse siparişe kaydedemeyiz.
+            if not musteri_id:
+                return error("Sipariş oluşturmak için lütfen giriş yapın.", 401)
+                
+            cursor.execute("""
+                INSERT INTO siparisler (musteri_id, donanim_id, tutar)
+                VALUES (%s, %s, %s)
+            """, (musteri_id, item['donanim_id'], tutar))
+            
+            # Sepetten sil
+            cursor.execute("DELETE FROM sepet WHERE id = %s", (item['id'],))
+            
+        db.commit()
+        cursor.close()
+        db.close()
+        return success({"message": "Siparişiniz başarıyla oluşturuldu."})
+    except Exception as e:
+        return error(str(e), 500)
+
+@app.route('/api/admin/siparisler', methods=['GET'])
+def get_admin_siparisler():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("""
+            SELECT s.id, s.siparis_tarihi, s.durum, s.tutar,
+                   mus.ad_soyad, mus.email, m.model_adi, dp.paket_adi
+            FROM siparisler s
+            JOIN musteriler mus ON s.musteri_id = mus.id
+            JOIN donanim_paketleri dp ON s.donanim_id = dp.id
+            JOIN modeller m ON dp.model_id = m.id
+            ORDER BY s.siparis_tarihi DESC
+        """)
+        data = cursor.fetchall()
+        for d in data:
+            if d.get('siparis_tarihi'):
+                d['siparis_tarihi'] = d['siparis_tarihi'].strftime('%d.%m.%Y %H:%M')
+            if d.get('tutar'):
+                d['tutar'] = float(d['tutar'])
+        cursor.close()
+        db.close()
+        return success(data)
     except Exception as e:
         return error(str(e), 500)
 

@@ -21,8 +21,11 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h2 class="mb-4">Modelleri Yönet</h2>
+    <div class="container mt-5" id="adminPanelContainer" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Modelleri Yönet</h2>
+            <button class="btn btn-danger" onclick="localStorage.removeItem('adminToken'); window.location.reload();">Çıkış Yap</button>
+        </div>
         
         <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -41,9 +44,106 @@
                 </tbody>
             </table>
         </div>
+
+        <h2 class="mb-4 mt-5">Müşteri Sepet Özetleri</h2>
+        <div class="table-responsive mb-5">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Müşteri Adı</th>
+                        <th>Müşteri E-posta</th>
+                        <th>Araç Modeli</th>
+                        <th>Paket</th>
+                        <th>Fiyat</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-sepet-tbody">
+                    <tr>
+                        <td colspan="6" class="text-center">Sepet verileri yükleniyor...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="mt-5 mb-4 border-bottom pb-2">Kesinleşen Siparişler (Satın Alınanlar)</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Sipariş No</th>
+                        <th>Tarih</th>
+                        <th>Müşteri Adı</th>
+                        <th>Müşteri E-posta</th>
+                        <th>Araç ve Paket</th>
+                        <th>Tutar</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-siparisler-tbody">
+                    <tr>
+                        <td colspan="7" class="text-center">Sipariş verileri yükleniyor...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ADMIN GİRİŞ FORMU (GİZLİ BAŞLAR) -->
+    <div class="container mt-5" id="adminLoginFormContainer" style="display: none; max-width: 400px;">
+        <h3 class="text-center mb-4">Yetkili Yönetici Girişi</h3>
+        <div class="card shadow-sm p-4">
+            <form id="adminLoginFormPage">
+                <div class="mb-3">
+                    <label class="form-label">Kullanıcı Adı</label>
+                    <input type="text" class="form-control" id="adminUser" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Şifre</label>
+                    <input type="password" class="form-control" id="adminPass" required>
+                </div>
+                <div id="adminError" class="text-danger mb-3" style="display: none;">Hatalı giriş!</div>
+                <button type="submit" class="btn btn-dark w-100">Giriş Yap</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/script.js?v=3"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = localStorage.getItem('adminToken');
+            if(!token) {
+                // Token yoksa paneli gizle, login formunu göster
+                document.getElementById('adminPanelContainer').style.display = 'none';
+                document.getElementById('adminLoginFormContainer').style.display = 'block';
+            } else {
+                // Token varsa logini gizle paneli göster
+                document.getElementById('adminLoginFormContainer').style.display = 'none';
+                document.getElementById('adminPanelContainer').style.display = 'block';
+            }
+        });
+
+        document.getElementById('adminLoginFormPage').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+
+            fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ kullanici_adi: user, sifre: pass })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    window.location.reload(); // Sayfayı yenile
+                } else {
+                    document.getElementById('adminError').style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

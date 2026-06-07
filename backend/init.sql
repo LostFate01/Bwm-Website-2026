@@ -18,6 +18,11 @@ DROP TABLE IF EXISTS iletisim_talepleri;
 DROP TABLE IF EXISTS geri_cagirmalar;
 DROP TABLE IF EXISTS kampanyalar;
 DROP TABLE IF EXISTS kullanicilar;
+DROP TABLE IF EXISTS bayiler;
+DROP TABLE IF EXISTS siparisler;
+DROP TABLE IF EXISTS sepet;
+DROP TABLE IF EXISTS favoriler;
+DROP TABLE IF EXISTS musteriler;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ============================================================
@@ -164,26 +169,26 @@ INSERT INTO seriler (seri_adi, seri_kodu, aciklama) VALUES
 -- SEED: modeller
 -- ============================================================
 INSERT INTO modeller (seri_id, model_adi, yakit_tipi, kasa_tipi, resim_yolu) VALUES
-(1, 'BMW 2 Serisi Sedan',       'Benzin',   'Sedan',  '../images/2 serisi.png'),
-(2, 'BMW 3 Serisi M Sport',     'Benzin',   'Sedan',  '../images/3 serisi.png'),
-(2, 'BMW M3 Competition',       'Benzin',   'Sedan',  '../images/BMW M3.jpg'),
-(2, 'BMW 3 Serisi Touring',     'Benzin',   'Touring','../images/3 serisi touring.png'),
-(3, 'BMW 4 Serisi Coupe',       'Benzin',   'Coupe',  '../images/4 serisi coupe.png'),
-(3, 'BMW M4 Competition Coupe', 'Benzin',   'Coupe',  '../images/4 serisi.agresif.png'),
-(4, 'BMW 5 Serisi M Sport',     'Benzin',   'Sedan',  '../images/5 serisi.png'),
-(4, 'BMW i5 xDrive M Sport',    'Elektrik', 'Sedan',  '../images/5 serisi i5M60.png'),
-(5, 'BMW i7 M70 xDrive',        'Elektrik', 'Sedan',  '../images/7 serisi elektrik.png'),
-(5, 'BMW i7 xDrive M Sport',    'Elektrik', 'Sedan',  '../images/i7-sedan.png'),
-(5, 'BMW i7 M650 xDrive',       'Elektrik', 'Sedan',  '../images/yeni i7.png'),
-(6, 'BMW 8 Serisi Coupe',       'Benzin',   'Coupe',  '../images/8-serisi-coupe.png'),
-(6, 'BMW M8 Competition',       'Benzin',   'Coupe',  '../images/m8-grann-coupe.siyah.png'),
-(6, 'BMW 8 Serisi Cabrio',      'Benzin',   'Cabrio', '../images/8 serisi cabrio.png'),
-(7, 'BMW X1',                   'Benzin',   'SUV',    '../images/X1.jpg'),
-(7, 'BMW X2',                   'Benzin',   'SUV',    '../images/x2 serisi.png'),
-(7, 'BMW X3 M Sport',           'Benzin',   'SUV',    '../images/x3 serisi.png'),
-(7, 'BMW X4 M Sport',           'Benzin',   'SUV',    '../images/x4 serisi.png'),
-(7, 'BMW X5 M Sport',           'Benzin',   'SUV',    '../images/x5 serisi.png'),
-(7, 'BMW X6 M Sport',           'Benzin',   'SUV',    '../images/x6 serisi.png');
+(1, 'BMW 2 Serisi Sedan',       'Benzin',   'Sedan',  '../assets/images/2 serisi.png'),
+(2, 'BMW 3 Serisi M Sport',     'Benzin',   'Sedan',  '../assets/images/3 serisi.png'),
+(2, 'BMW M3 Competition',       'Benzin',   'Sedan',  '../assets/images/BMW M3.jpg'),
+(2, 'BMW 3 Serisi Touring',     'Benzin',   'Touring','../assets/images/3 serisi touring.png'),
+(3, 'BMW 4 Serisi Coupe',       'Benzin',   'Coupe',  '../assets/images/4 serisi coupe.png'),
+(3, 'BMW M4 Competition Coupe', 'Benzin',   'Coupe',  '../assets/images/4 serisi.agresif.png'),
+(4, 'BMW 5 Serisi M Sport',     'Benzin',   'Sedan',  '../assets/images/5 serisi.png'),
+(4, 'BMW i5 xDrive M Sport',    'Elektrik', 'Sedan',  '../assets/images/5 serisi i5M60.png'),
+(5, 'BMW i7 M70 xDrive',        'Elektrik', 'Sedan',  '../assets/images/7 serisi elektrik.png'),
+(5, 'BMW i7 xDrive M Sport',    'Elektrik', 'Sedan',  '../assets/images/i7-sedan.png'),
+(5, 'BMW i7 M650 xDrive',       'Elektrik', 'Sedan',  '../assets/images/yeni i7.png'),
+(6, 'BMW 8 Serisi Coupe',       'Benzin',   'Coupe',  '../assets/images/8-serisi-coupe.png'),
+(6, 'BMW M8 Competition',       'Benzin',   'Coupe',  '../assets/images/m8-grann-coupe.siyah.png'),
+(6, 'BMW 8 Serisi Cabrio',      'Benzin',   'Cabrio', '../assets/images/8 serisi cabrio.png'),
+(7, 'BMW X1',                   'Benzin',   'SUV',    '../assets/images/X1.jpg'),
+(7, 'BMW X2',                   'Benzin',   'SUV',    '../assets/images/x2 serisi.png'),
+(7, 'BMW X3 M Sport',           'Benzin',   'SUV',    '../assets/images/x3 serisi.png'),
+(7, 'BMW X4 M Sport',           'Benzin',   'SUV',    '../assets/images/x4 serisi.png'),
+(7, 'BMW X5 M Sport',           'Benzin',   'SUV',    '../assets/images/x5 serisi.png'),
+(7, 'BMW X6 M Sport',           'Benzin',   'SUV',    '../assets/images/x6 serisi.png');
 
 -- ============================================================
 -- SEED: donanim_paketleri
@@ -299,18 +304,45 @@ INSERT INTO bayiler (bayi_adi, sehir, adres, telefon) VALUES
 ('Borusan Oto Ankara', 'Ankara', 'Balgat, Çankaya', '0312 204 80 00'),
 ('Borusan Oto İzmir', 'İzmir', 'Bornova', '0232 400 11 22');
 
+CREATE TABLE IF NOT EXISTS musteriler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ad_soyad VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    sifre_hash VARCHAR(255) NOT NULL,
+    kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS favoriler (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    session_id VARCHAR(100) NOT NULL,
+    session_id VARCHAR(100),
+    musteri_id INT DEFAULT NULL,
     model_id INT NOT NULL,
     olusturma_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_fav_modeller FOREIGN KEY (model_id) REFERENCES modeller(id) ON DELETE CASCADE
+    FOREIGN KEY (musteri_id) REFERENCES musteriler(id) ON DELETE CASCADE,
+    FOREIGN KEY (model_id) REFERENCES modeller(id) ON DELETE CASCADE
+);
+
+-- ============================================================
+-- TABLO: siparisler
+-- Müşterilerin sepetten onaylayıp aldıkları araçlar
+-- ============================================================
+CREATE TABLE siparisler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    musteri_id INT NOT NULL,
+    donanim_id INT NOT NULL,
+    tutar DECIMAL(15,2) NOT NULL,
+    siparis_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    durum VARCHAR(50) DEFAULT 'Onay Bekliyor',
+    FOREIGN KEY (musteri_id) REFERENCES musteriler(id) ON DELETE CASCADE,
+    FOREIGN KEY (donanim_id) REFERENCES donanim_paketleri(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS sepet (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    session_id VARCHAR(100) NOT NULL,
+    session_id VARCHAR(100) NULL,
+    musteri_id INT NULL,
     donanim_id INT NOT NULL,
     olusturma_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_sep_donanim FOREIGN KEY (donanim_id) REFERENCES donanim_paketleri(id) ON DELETE CASCADE
+    CONSTRAINT fk_sep_donanim FOREIGN KEY (donanim_id) REFERENCES donanim_paketleri(id) ON DELETE CASCADE,
+    CONSTRAINT fk_sep_musteriler FOREIGN KEY (musteri_id) REFERENCES musteriler(id) ON DELETE CASCADE
 );

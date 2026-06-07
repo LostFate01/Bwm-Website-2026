@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000/api'; // Varsayılan backend adresi
+const API_BASE_URL = 'http://localhost:5000/api'; // Varsayılan backend adresi
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Fiyat Listesi Yükleme
@@ -230,27 +230,101 @@ async function handleKampanyaSubmit(e) {
 async function fetchAdminData() {
     try {
         const response = await fetch(`${API_BASE_URL}/modeller`);
-        const data = await response.json();
+        const result = await response.json();
         
-        const tbody = document.getElementById('admin-modeller-tbody');
-        if(!tbody) return;
-        
-        tbody.innerHTML = '';
-        data.forEach(model => {
-            tbody.innerHTML += `
-                <tr>
-                    <td>${model.id}</td>
-                    <td>${model.model_adi}</td>
-                    <td>${model.motor_tipi}</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" onclick="editModel(${model.id})">Düzenle</button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteModel(${model.id})">Sil</button>
-                    </td>
-                </tr>
-            `;
-        });
+        if(result.success) {
+            const tbody = document.getElementById('admin-modeller-tbody');
+            if(tbody) {
+                tbody.innerHTML = '';
+                result.data.forEach(model => {
+                    // Motor tipi 'motor_bilgisi' veya 'yakit_tipi' olabilir
+                    const motorTipi = model.motor_bilgisi || model.yakit_tipi || '-';
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${model.id}</td>
+                            <td>${model.model_adi}</td>
+                            <td>${motorTipi}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editModel(${model.id})">Düzenle</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteModel(${model.id})">Sil</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+
+        // Sepet Özetlerini de yükle
+        fetchAdminSepetData();
+        // Siparişleri de yükle
+        fetchAdminSiparislerData();
     } catch (error) {
         console.error('Admin veri yükleme hatası:', error);
+    }
+}
+
+async function fetchAdminSepetData() {
+    try {
+        const response = await fetch(`http://localhost:5000/api/admin/sepet_ozet`);
+        const result = await response.json();
+        if (result.success) {
+            const tbody = document.getElementById('admin-sepet-tbody');
+            if(tbody) {
+                tbody.innerHTML = '';
+                if(result.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center">Henüz sepete eklenmiş ürün yok.</td></tr>';
+                    return;
+                }
+                result.data.forEach(item => {
+                    const musteriAdi = item.ad_soyad || '<span class="text-muted">Kayıtsız (Anonim)</span>';
+                    const musteriMail = item.email || '-';
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${item.olusturma_tarihi}</td>
+                            <td>${musteriAdi}</td>
+                            <td>${musteriMail}</td>
+                            <td>${item.model_adi}</td>
+                            <td>${item.paket_adi}</td>
+                            <td>₺${item.fiyat.toLocaleString('tr-TR')}</td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+    } catch (error) {
+        console.error('Admin sepet veri yükleme hatası:', error);
+    }
+}
+
+async function fetchAdminSiparislerData() {
+    try {
+        const response = await fetch(`http://localhost:5000/api/admin/siparisler`);
+        const result = await response.json();
+        if (result.success) {
+            const tbody = document.getElementById('admin-siparisler-tbody');
+            if(tbody) {
+                tbody.innerHTML = '';
+                if(result.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center">Henüz oluşturulmuş bir sipariş yok.</td></tr>';
+                    return;
+                }
+                result.data.forEach(item => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>#${item.id}</td>
+                            <td>${item.siparis_tarihi}</td>
+                            <td>${item.ad_soyad}</td>
+                            <td>${item.email}</td>
+                            <td>${item.model_adi} - ${item.paket_adi}</td>
+                            <td>₺${item.tutar.toLocaleString('tr-TR')}</td>
+                            <td><span class="badge bg-warning text-dark">${item.durum}</span></td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+    } catch (error) {
+        console.error('Admin sipariş veri yükleme hatası:', error);
     }
 }
 
