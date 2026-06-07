@@ -11,69 +11,316 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css" />
-
-    <style>
-        body{
-            font-family: "Oswald", sans-serif;
-            font-weight: 300;
-        }
-
-        p{
-            font-size: 20px;
-        }
-
-        small{
-            font-size: 16px;
-        }
-    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="border-bottom: 1px solid black !important;">
-        <div class="container">
-          <a class="navbar-brand" href="../index.html"><img width="100" src="/images/website-navbaar-logo.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<body style="background-color: #fff;">
+    <nav class="navbar navbar-expand-xl custom-navbar navbar-light" style="background-color: transparent !important;">
+      <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e6e6e6; width: 100%;">
+          <!-- Logo -->
+          <a class="navbar-brand me-4" href="../index.html">
+            <img src="../assets/images/BMW Logo.png" alt="BMW Logo" style="width: 52px;">
+          </a>
+          <!-- Hamburger Menü Butonu -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <!-- Menü Linkleri ve İkonlar -->
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item"><a class="nav-link text-dark" href="../pages/modeller.html"><b>Modeller</b></a></li>
-              <li class="nav-item"><a class="nav-link text-dark" href="../pages/hizmetler.html"><b>Hizmetler</b></a></li>
-              <li class="nav-item"><a class="nav-link text-dark" href="../pages/iletisim.html"><b>İletişim</b></a></li>
-              <li class="nav-item"><a class="nav-link text-dark" href="../pages/Hakkında.html"><b>Hakkında</b></a></li>
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0 main-nav-links" style="font-weight: 600;">
+              <li class="nav-item me-3"><a class="nav-link text-dark" href="modeller.html" style="text-transform: none !important; font-size: 14.5px !important;">Modeller</a></li>
+              <li class="nav-item me-3"><a class="nav-link text-dark" href="elektrikli.html" style="text-transform: none !important; font-size: 14.5px !important;">%100 Elektrikli Modeller <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+              <li class="nav-item me-3"><a class="nav-link text-dark" href="#" style="text-transform: none !important; font-size: 14.5px !important;">BMW'nizi Online Rezerve Edin</a></li>
+              <li class="nav-item me-3"><a class="nav-link text-dark" href="hizmetler.html" style="text-transform: none !important; font-size: 14.5px !important;">Online Hizmetler <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+              <li class="nav-item dropdown position-static">
+              <a class="nav-link text-dark" href="#" id="kesfedinDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: none !important; font-size: 14.5px !important;">BMW'yi Keşfedin <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a>
+              <div class="dropdown-menu w-100 mega-menu" aria-labelledby="kesfedinDropdown">
+                <div style="max-width: 1700px; margin: 0 auto; width: 100%; padding: 0 2%;">
+                  <div class="row">
+                    <!-- Col 1 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">BMW ALPINA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Vision BMW ALPINA</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 2 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">BMW SERVİSLERİ</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Servis Çözümlerine Genel Bakış</a></li>
+                        <li><a href="#">BMW Prime</a></li>
+                        <li><a href="#">Geri Dönüşüm</a></li>
+                        <li><a href="#">BMW Yetkili Servislerini Bulun</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">SÜRDÜRÜLEBİLİRLİK</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Unlearners</a></li>
+                        <li><a href="#">Değişime Öncülük Et</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 3 -->
+                    <div class="col-md-3">
+                      <h6 class="mega-menu-title">GARANTİLER VE GÖNÜLLÜ GERİ ÇAĞIRMA</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Garantisi</a></li>
+                        <li><a href="#">Garanti+ Güvence Paketi</a></li>
+                        <li><a href="geri-cagirma.html">Gönüllü Geri Çağırma</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">DİJİTAL HİZMETLER VE UYGULAMALAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW ConnectedDrive: Genel Bakış</a></li>
+                        <li><a href="#">BMW ConnectedDrive: Hüküm ve Koşullar</a></li>
+                        <li><a href="#">BMW iDrive</a></li>
+                        <li><a href="#">BMW Digital Key</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 4 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">PARÇA & AKSESUAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">Orijinal BMW Aksesuarları</a></li>
+                        <li><a href="#">BMW x SipaBoards e-SUP</a></li>
+                      </ul>
+                      <h6 class="mega-menu-title mt-4">TEKNOLOJİ & İNOVASYON</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="#">BMW Symbiotic Drive</a></li>
+                        <li><a href="#">BMW Heart of Joy</a></li>
+                        <li><a href="#">BMW Sözlüğü</a></li>
+                        <li><a href="#">Yeni AB Lastik Etiketi</a></li>
+                      </ul>
+                    </div>
+                    <!-- Col 5 -->
+                    <div class="col-md-2">
+                      <h6 class="mega-menu-title">DİPLOMATİK, FİLO VE KURUMSAL SATIŞLAR</h6>
+                      <ul class="mega-menu-list">
+                        <li><a href="iletisim.html">İletişim Formu</a></li>
+                        <li><a href="#">Contact Form for English Speakers</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-center flex-row" style="gap: 15px;">
+              <li class="nav-item"><a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#authModal" style="font-size: 20px !important;"><i class="bi bi-person"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="#" style="font-size: 19px !important;"><i class="bi bi-cart3"></i></a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="bayiler.html" style="font-size: 18px !important;"><i class="bi bi-geo-alt"></i></a></li>
             </ul>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
       <br>
       <br>
       
-      <div class="container mt-5" style="width: 1800px;">
-            <h1 style="font-weight: 300;">GÖNÜLLÜ GERİ ÇAĞIRMA VE ÜRÜN GÜNCELLEMELERİ.</h1>
-            <br>
-            <p>Borusan Otomotiv, müşterilerinin kullandığı ürünlerle ilgili olarak, üretici tarafından herhangi bir yasal müdahaleye gerek kalmadan gönüllü ve ücretsiz geri çağırma ve düzeltme işlemleri yürütmektedir. Bu işlemler, Üretici Teknik Departmanı'nın önerileri doğrultusunda gerçekleştirilir ve otomobilinizin üstün kalite ile yüksek teknik standartlarını koruması açısından büyük önem taşır.
-            <br><br>
-            Bu sayfa üzerinden, BMW otomobiliniz için geçerli bir Gönüllü Geri Çağırma işlemi olup olmadığını kolayca sorgulayabilirsiniz.</p>
+      <div class="centered-content-container mt-5 pt-5 mb-5 pb-5" style="max-width: 1700px; margin: 0 auto; width: 100%; padding-left: 5%; padding-right: 5%;">
+    <div class="text-center mb-5 pb-5" style="max-width: 1400px; margin: 0 auto;">
+        <h1 style="font-weight: 300; font-size: 42px; color: #262626;">Gönüllü geri çağırma ve ürün güncellemeleri.</h1>
+        <p style="font-size: 18px; color: #4d4d4d; margin-top: 25px;">
+            Borusan Otomotiv, müşterilerinin kullanmakta olduğu ürünlerinin, üretici tarafından bakanlığın müdahalesine gerek kalmadan gönüllü olarak ücretsiz geri çağırma ve düzeltilme faaliyetlerini yürütmektedir. Üretici Teknik Departmanı'nın önerileri ile Gönüllü Geri Çağırma işlemlerinin uygulanması otomobilinizin üstün kalite ve yüksek teknik standartlarının devamlılığının sağlanması açısından önem taşır.
+        </p>
+        <p style="font-size: 18px; color: #4d4d4d; margin-top: 25px;">
+            Aşağıdaki sorgulama bağlantısını kullanarak BMW otomobilinizi etkileyen Gönüllü Geri Çağırma işlemi olup olmadığını sorgulayabilirsiniz. BMW'nizin herhangi bir Gönüllü Geri Çağırma işleminden etkilenip etkilenmediğini öğrenmek için 17 haneli şasi numaranızı (VIN) girerek bu sayfada sorgulama yapabilirsiniz. Şasi bilginiz ruhsat içerisinde yer almaktadır. Sorgulama sonrasında otomobiliniz Gönüllü Geri Çağırma işleminden etkileniyor ise aşağıdaki randevu formu aracılığı ile Borusan Otomotiv Yetkili Servisleri ile iletişime geçebilirsiniz.
+        </p>
+        <button class="btn btn-outline-dark mt-4" style="border-radius: 0; padding: 12px 35px; font-weight: 600; font-size: 15px;">Sorgulama sayfasına gidin</button>
+    </div>
 
-            <div class="cagirma-container mt-5">
-                <div class="cagirma-divs">
-                    <img class="cagirma-img" src="../assets/images/bmw-geri-cagirma.png" alt="">
+    <div class="mt-5 pt-5" style="max-width: 1400px; margin: 0 auto;">
+        <h2 style="font-weight: 300; font-size: 34px; color: #262626;">SERVİS RANDEVUNUZU ALIN.</h2>
+        <p style="font-size: 16px; color: #4d4d4d; margin-bottom: 40px; margin-top: 15px;">
+            Sorgulama sayfasında otomobilinizi etkileyen Gönüllü Geri Çağırma işlemi varsa, aşağıdaki formu doldurarak servis randevu talebinizi iletebilirsiniz. İletişim merkezimiz randevunuzu teyit etmek için sizinle iletişime geçecektir.
+        </p>
+
+        <form>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">Ad *</label>
+                    <input type="text" class="form-control" style="border-radius: 0; padding: 10px;" required>
                 </div>
-                <div class="cagirma-divs">
-                    <h2>SORGULAMA YAPMAK İÇİN.</h2>
-                    <p>BMW'nizin herhangi bir Gönüllü Geri Çağırma işleminden etkilenip etkilenmediğini öğrenmek için, 17 haneli şasi numaranızı (VIN) girerek sorgulama yapabilirsiniz. Şasi numaranız, araç ruhsatınızda yer almaktadır.</p>
-                    <form>
-                        <label for="">Lütfen şasi numaranızı giriniz:</label>
-                        <br>
-                        <input class="mt-2 cagirma-text-input" type="text">
-                        <button class="cagirma-button" type="submit">Sorgula</button>
-                    </form>
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">Soyad *</label>
+                    <input type="text" class="form-control" style="border-radius: 0; padding: 10px;" required>
                 </div>
             </div>
             
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">E-Posta *</label>
+                    <input type="email" class="form-control" style="border-radius: 0; padding: 10px;" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">GSM *</label>
+                    <input type="text" class="form-control" placeholder="0 ( _ _ _ ) _ _ _ _ _ _ _" style="border-radius: 0; padding: 10px;" required>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">Plaka *</label>
+                    <input type="text" class="form-control" style="border-radius: 0; padding: 10px;" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" style="font-size: 13px; font-weight: 600;">Tercih Ettiğiniz Yetkili Servis *</label>
+                    <select class="form-select" style="border-radius: 0; padding: 10px;" required>
+                        <option selected disabled value="">Seçiniz</option>
+                        <option>Borusan Oto Adana - Mersin / Adana</option>
+                        <option>Ağaçlı Oto / Ankara</option>
+                        <option>AU Otomotiv / Ankara</option>
+                        <option>Borusan Oto Çayyolu / Ankara</option>
+                        <option>Borusan Oto Esenboğa / Ankara</option>
+                        <option>Otomol Çayyolu / Ankara</option>
+                        <option>Kosifler Oto Antalya / Antalya</option>
+                        <option>Otomol Antalya / Antalya</option>
+                        <option>Burmot / Bursa</option>
+                        <option>Teknik Oto Bursa 1 / Bursa</option>
+                        <option>Teknik Oto Bursa 3 / Bursa</option>
+                        <option>Özgür Oto / Denizli</option>
+                        <option>ER-Güleryüz / Erzurum</option>
+                        <option>Teknik Oto Eskişehir / Eskişehir</option>
+                        <option>Erenler Otomotiv / Gaziantep</option>
+                        <option>Borusan Oto Avcılar / İstanbul</option>
+                        <option>Borusan Oto İstinye / İstanbul</option>
+                        <option>Borusan Oto Samandıra / İstanbul</option>
+                        <option>Gül-Al / İstanbul</option>
+                        <option>Otomol İstinye / İstanbul</option>
+                        <option>Otomol Merter / İstanbul</option>
+                        <option>Piyalepaşa Otomotiv / İstanbul</option>
+                        <option>Trend Oto / İstanbul</option>
+                        <option>Ege Servis / İzmir</option>
+                        <option>Otomol İzmir / İzmir</option>
+                        <option>Özgörkey Otomotiv / İzmir</option>
+                        <option>İnciroğlu Otomotiv / Kayseri</option>
+                        <option>Üçler Otomotiv / Kayseri</option>
+                        <option>Öztorun Oto / Kocaeli</option>
+                        <option>Köprülü Oto / Konya</option>
+                        <option>Akçinler Otomotiv / Manisa</option>
+                        <option>Beyhan Oto / Muğla</option>
+                        <option>Borusan Oto Bodrum / Muğla</option>
+                        <option>Otomol Bodrum / Muğla</option>
+                        <option>Sandıkçı Oto / Sakarya</option>
+                        <option>Kosifler Oto Samsun / Samsun</option>
+                        <option>Badıllı Oto / Şanlıurfa</option>
+                        <option>Borusan Oto Çorlu / Tekirdağ</option>
+                        <option>Dinamik Oto / Trabzon</option>
+                    </select>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: #4d4d4d; margin-bottom: 20px;">
+                Kişisel verilerinizin işlenmesi hakkında aydınlatma metnini <a href="#" style="color: #1c69d4; font-weight: 600;">buradan</a> inceleyebilirsiniz.
+            </p>
+
+            <label class="form-label" style="font-size: 14px; font-weight: 600;">Kişisel Verilerin İşlenmesi Hakkında Rıza Metni</label>
+            <div class="p-3 mb-4" style="background-color: #f9f9f9; border: 1px solid #ddd; height: 100px; overflow-y: auto; font-size: 13px; color: #666;">
+                Tercihiniz uyarınca bizimle paylaştığınız kişisel verilerinizi, sizi daha iyi tanıyabilmek ve size özel fırsatlar sunmak için işliyor olacağız. Örneğin, eğitim durumunuz, mesleğiniz, ilgi alanlarınız uyarınca size özel fırsatlar tasarlamamızı ve sunmamızı isterseniz bu bilgilerinizi işliyor ve size özel fırsat/hizmetlerden yararlanmanızı sağlıyoruz. Bizimle bu kapsamdaki kişisel verilerinizi paylaşmak zorunda olmadığınızı belirtmek isteriz.<br>
+                Kişisel verilerinizi aşağıda belirtilen kapsamda işleyebilmemiz için rıza vermek isterseniz kutucuğu işaretleyebilirsiniz.
+            </div>
+
+            <p style="font-size: 14px; margin-bottom: 5px;">Kişisel verilerinizi yukarıdaki Rıza Metninde belirtilen kapsamda işlememizi onaylıyor musunuz?</p>
+            <div class="mb-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="kvkk_onay" id="kvkk_evet" value="1" required>
+                    <label class="form-check-label" for="kvkk_evet" style="font-size: 14px;">Evet, onaylıyorum.</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="kvkk_onay" id="kvkk_hayir" value="0">
+                    <label class="form-check-label" for="kvkk_hayir" style="font-size: 14px;">Hayır, onaylamıyorum.</label>
+                </div>
+            </div>
+
+            <p style="font-size: 14px; margin-bottom: 5px;">Borusan Otomotiv İthalat ve Dağıtım A.Ş.'nin tanıtım ve kampanyalarından haberdar olmak için ileti almak ister misiniz?</p>
+            <div class="mb-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="iletisim_izin" id="izin_evet" value="1" required>
+                    <label class="form-check-label" for="izin_evet" style="font-size: 14px;">Evet</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="iletisim_izin" id="izin_hayir" value="0">
+                    <label class="form-check-label" for="izin_hayir" style="font-size: 14px;">Hayır</label>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: #4d4d4d;">(*) işareti olan alanlar zorunludur.</p>
+
+            <button type="submit" class="btn btn-primary mt-3" style="border-radius: 0; padding: 12px 0; font-weight: 600; width: 300px; background-color: #1c69d4; border-color: #1c69d4;">Gönder</button>
+        </form>
+    </div>
+</div>
+
+<!-- AUTH MODAL -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal-content">
+          <div class="auth-modal-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" class="auth-modal-logo">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="auth-modal-body">
+            
+            <!-- LOGIN VIEW -->
+            <div id="loginView" class="fade-in-active" style="display: block;">
+              <h3 class="auth-title">Giriş Yap</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Giriş Yap</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Devam Et
+              </button>
+              
+              <div class="auth-switch">
+                Hesabın yok mu? <a href="#" id="showRegisterBtn">Kayıt Ol</a>
+              </div>
+            </div>
+
+            <!-- REGISTER VIEW -->
+            <div id="registerView" style="display: none;">
+              <h3 class="auth-title">Kayıt Ol</h3>
+              <form>
+                <div class="auth-input-group">
+                  <input type="text" class="auth-input" placeholder="Ad Soyad" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="email" class="auth-input" placeholder="E-posta Adresi" required>
+                </div>
+                <div class="auth-input-group">
+                  <input type="password" class="auth-input" placeholder="Şifre Oluştur" required>
+                </div>
+                <button type="button" class="auth-btn-primary">Kayıt Ol</button>
+              </form>
+              
+              <div class="auth-divider">Veya</div>
+              
+              <button type="button" class="auth-btn-google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Kayıt Ol
+              </button>
+              
+              <div class="auth-switch">
+                Zaten hesabın var mı? <a href="#" id="showLoginBtn">Giriş Yap</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/auth-modal.js"></script>
+    <script src="../assets/js/mega-menu.js"></script>
 
 <footer class="modern-white-footer">
   <!-- Newsletter Section -->
@@ -197,5 +444,5 @@
     <i class="bi bi-headset"></i>
   </a>
 </footer>
-
+</body>
 </html>
