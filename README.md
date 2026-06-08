@@ -1,80 +1,80 @@
-# BAŞLAMADAN ÖNCE OKUYUN
-<div>
-<p style="text-align: justify;">
-<h3>GitHub Desktop Kurulumu</h3><br>
-Lütfen bilgisayarınıza <a href="https://desktop.github.com/download/">GitHub Desktop</a> uygulamasını indiriniz. Bu uygulama üzerinden çalışacağız.
+# BMW Bayi Web Sitesi
 
-<h3>İş Ayrımı</h3><br>
-Görevlerin dağılımı <b>Trello</b> üzerinden yapılacaktır. Lütfen bir Trello hesabı oluşturun. <a href="https://www.trello.com">Trello'ya buradan ulaşabilirsiniz.</a>
+## Proje Amacı
+Bu proje bir üniversite ödevidir. Temel amacı, statik bir BMW Bayi web sitesini (HTML/CSS/JS) ele alarak **RESTful API** ve **MySQL veritabanı** kullanarak dinamik ve tam donanımlı bir web uygulamasına dönüştürmektir. Sitede yer alan fiyat listeleri, model detayları, iletişim formları ve kampanyalar tamamen veritabanından dinamik olarak çekilir ve yönetilir.
 
-<h3>Dosya Boyutu Optimizasyonu</h3><br>
-<p>Dosyaları yüklemeden önce boyutlarını küçültün.</p>
-<ul>
-  <li>Örnek: Bir video dosyasını 150 MB’den 25 MB’ın altına indirin.</li>
-  <li>Not: Fotoğraflar için de aynı şekilde optimizasyon yapınız.</li>
-</ul>
+## Kullanılan Teknolojiler
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript, Bootstrap 5 (Modern, şeffaf navbar, mega menü ve responsive tasarım entegrasyonlarıyla güçlendirildi)
+- **Backend:** Python, Flask, Flask-CORS
+- **Veritabanı:** MySQL
+- **Güvenlik:** `bcrypt` (Admin şifre hashleme için)
 
+## Kurulum Adımları
+Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
-<h3>GitHub Desktop Kullanımı</h3><br>
-GitHub Desktop kullanmayı bilmiyorsanız, aşağıdaki videoları izleyebilirsiniz:
+1. **Veritabanını Kurun:**
+   MySQL sunucunuzun çalıştığından emin olun.
+   Projeyi klonladıktan sonra `backend/init.sql` dosyasını MySQL üzerinde çalıştırarak `bmw_bayi` isimli veritabanını ve örnek verileri (seed verileri) oluşturun.
+   ```bash
+   mysql -u root -p < backend/init.sql
+   ```
 
-* <a href="https://www.youtube.com/watch?v=8Dd7KRpKeaE&t=37s">İngilizce</a> (Altyazılı izleyebilirsiniz)
-* <a href="https://www.youtube.com/watch?v=GGb6Hq4S0-o">Türkçe</a> (Video bağlantısı buraya)
+2. **Veritabanı Bağlantısını Ayarlayın:**
+   `backend/app.py` içerisindeki `DB_CONFIG` kısmında bulunan MySQL kullanıcı adı ve şifrenizi (varsayılan: `root` / `2923`) kendi sisteminize göre güncelleyin.
 
-<h3>Yapılacaklar Listesi (TRELLO)</h3><br>
-Tüm yapılacak işlere <a href="https://trello.com/invite/b/675ae713ccd417932ad0944e/ATTI39ef9ee384d091aa7dc9c0500289fb82CCC27A35/bmw-si̇tesi̇-html-fi̇nal">bu bağlantıdan</a> ulaşabilirsiniz.
-</p>
+3. **Gerekli Python Kütüphanelerini Yükleyin:**
+   Backend dizinine geçin ve bağımlılıkları yükleyin.
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
 
----
+4. **Sunucuyu Başlatın:**
+   Flask uygulamasını çalıştırarak API ve statik sunucuyu aktif edin.
+   ```bash
+   python app.py
+   ```
 
-## GitHub Desktop Kullanımı – Adım Adım Rehber
+5. **Uygulamaya Erişin:**
+   Tarayıcınızı açın ve aşağıdaki adrese gidin:
+   - Ana Site: `http://localhost:5000`
+   - Admin Paneli: `http://localhost:5000/admin.html`
 
-1. **GitHub Desktop’u İndirin ve Kurun**  
-   - [GitHub Desktop](https://desktop.github.com/) adresinden uygulamayı indirin ve kurun.
+## API Endpointleri
+Proje, frontend'i beslemek için aşağıdaki temel REST API servislerini sunar:
 
-2. **GitHub Hesabınıza Giriş Yapın**  
-   - GitHub hesabınızla giriş yapın. Eğer bir hesabınız yoksa [GitHub’a kaydolun](https://github.com/).
+- **Seriler:** `GET, POST, PUT, DELETE /api/seriler`
+- **Modeller:** `GET, POST, PUT, DELETE /api/modeller`
+- **Fiyat Listesi:** `GET, PUT /api/fiyat-listesi`
+- **İletişim Talepleri:** `GET, POST, PATCH, DELETE /api/iletisim`
+- **Geri Çağırmalar:** `POST /api/geri-cagirma`
+- **Kampanyalar:** `GET, POST, PUT, DELETE /api/kampanyalar`
+- **Auth (Admin):** `POST /api/auth/login`, `POST /api/auth/set-password`
+- **Session Temelli İşlemler:**
+  - `GET /api/bayiler`
+  - `GET, POST, DELETE /api/favoriler`
+  - `GET, POST, DELETE /api/sepet`
 
-3. **Proje Deposu (Repository) Klonlama**  
-   - Uygulamada “File” > “Clone Repository” seçeneğine tıklayın.  
-   - “URL” sekmesine geçin ve size verilen depo bağlantısını yapıştırın.  
-   - Depoyu bilgisayarınıza kaydetmek için bir konum seçin ve “Clone” butonuna tıklayın.
+## Veritabanı Yapısı
+Sistem, `bmw_bayi` veritabanı altında tam ilişkisel (Primary Key / Foreign Key) bir yapıda çalışır:
+- **seriler**: (Örn: 3 Serisi, X Serisi)
+- **modeller**: Seriye bağlı alt modeller. (1-to-N ilişki)
+- **donanim_paketleri**: Modele ait motor/donanım paketleri. (1-to-N ilişki)
+- **fiyat_listesi**: Donanım paketlerine bağlı fiyat bilgisi.
+- **iletisim_talepleri**: Kullanıcılardan gelen iletişim mesajları.
+- **geri_cagirmalar**: Şasi numarası (VIN) bazlı servis çağırma sorguları.
+- **kampanyalar**: Faiz, kredi ve indirimli model kampanyaları.
+- **kullanicilar**: Admin paneline giriş için hashli şifre tutan tablo.
+- **bayiler**: Harita veya bayi bulma sistemi için bayi listesi.
+- **favoriler** & **sepet**: Session bazlı geçici verileri tutar.
 
-4. **Değişiklik Yapma ve Kaydetme**  
-   - Depo bilgisayarınıza indirilir ve yerel bir klasöre kaydedilir.  
-   - Bu klasörde değişiklikler yapabilirsiniz (dosya ekleme, düzenleme vb.).  
-   - Yaptığınız değişiklikler uygulama üzerinde otomatik olarak algılanır.
+## Ekran Görüntüleri
+*(Proje tamamlandığında ekran görüntülerini `frontend/images/` gibi bir yola ekleyip burada sergileyebilirsiniz)*
+- Ana Sayfa Dinamik Slider
+- Mega Menü ("BMW'yi Keşfedin")
+- Filtrelenebilir Modeller Sayfası
+- API Destekli Tam Ekran İletişim Formları
 
-5. **Değişiklikleri Yükleme (Commit ve Push)**  
-   - Uygulamada, yaptığınız değişiklikler listelenecektir.  
-   - Her değişiklik için bir açıklama yazın (örneğin: “Yeni dosya eklendi”).  
-   - “Commit to Main” butonuna tıklayın.  
-   - Son olarak, “Push Origin” butonuna tıklayarak değişikliklerinizi depoya yükleyin.
-
----
-
-## Trello Kullanımı – Adım Adım Rehber
-
-1. **Trello’ya Kaydolun veya Giriş Yapın**  
-   - [Trello](https://trello.com/) adresine gidin ve hesabınıza giriş yapın veya yeni bir hesap oluşturun.
-
-2. **Proje Panosuna Katılın**  
-   - Size gönderilen pano bağlantısını açın ve katılma isteğinizi onaylayın.
-
-3. **Kartları İnceleyin**  
-   - Panodaki her sütun bir aşamayı temsil eder (Örneğin: Yapılacaklar, Yapılıyor, Tamamlandı).  
-   - Sütunlarda bulunan her kart, bir görevi temsil eder.
-
-4. **Kendinize Görev Atayın**  
-   - Bir kartın üzerine tıklayın.  
-   - “Üyeler” kısmına tıklayarak kendinizi karta ekleyin.
-
-5. **Görev Durumunu Güncelleyin**  
-   - Göreviniz üzerinde çalışmaya başladığınızda, kartı “Yapılıyor” sütununa taşıyın.  
-   - Görevi tamamladığınızda, kartı “Tamamlandı” sütununa taşıyın.
-
-6. **Kartlara Detay Ekleyin**  
-   - Kart üzerine tıklayarak açıklamalar, kontrol listesi veya dosyalar ekleyebilirsiniz.
-</div>
-
-# Bwm-website
+## Kullanım Örnekleri
+- **Kullanıcı Akışı:** Siteye giren bir müşteri "Modeller" sekmesinden araçları filtreler, "Fiyat Listesi" kısmında tüm donanım ve fiyatları listeler ve ilgilendiği araç için "İletişim" sayfasından talebini bırakır. Bu işlemlerin tamamı JSON API üzerinden MySQL'den çekilir.
+- **Yönetici Akışı:** "Giriş Yap" butonundan admin paneline erişen yönetici, `/api/iletisim` endpointine düşen taleplerin durumunu "Bekliyor" -> "Arandı" olarak değiştirebilir veya fiyat listesindeki bir fiyatı `PUT` isteği ile güncelleyebilir.
