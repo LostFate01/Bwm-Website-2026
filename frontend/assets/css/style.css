@@ -1441,3 +1441,112 @@ textarea.form-control {
     transform: scale(1.1);
     color: #1c69d4;
 }
+
+/* =========================================
+   DARK MODE STYLES
+========================================= */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .modeller-navbar {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .nav-link.text-dark {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .filter-section-header,
+body.dark-mode .car-huge-title,
+body.dark-mode .price-text {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .filter-btn,
+body.dark-mode .filter-btn-text,
+body.dark-mode .bmw-orig-card,
+body.dark-mode .card {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .filter-btn:hover,
+body.dark-mode .filter-btn-text:hover {
+    border-color: var(--bmw-blue) !important;
+}
+
+body.dark-mode .badge-bg {
+    background: #333 !important;
+    color: #aaa !important;
+}
+
+body.dark-mode .card-footer-info {
+    border-top: 1px solid #333 !important;
+}
+
+body.dark-mode .col-xl-9.col-lg-8 {
+    background-color: #121212 !important;
+}
+
+body.dark-mode .modal-content {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #333 !important;
+}
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+    border-color: #333 !important;
+}
+
+body.dark-mode .form-control {
+    background-color: #2a2a2a !important;
+    border-color: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #888 !important;
+}
+
+body.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+body.dark-mode .alert-secondary {
+    background-color: #2a2a2a !important;
+    border-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .cont-rezerve {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+}
+body.dark-mode .cont-rezerve-button {
+    border-color: #e0e0e0;
+    color: #e0e0e0;
+}
+body.dark-mode .cont-rezerve-button:hover {
+    background: #e0e0e0;
+    color: #121212;
+}
+
+body.dark-mode .content-section {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+body.dark-mode .content-text {
+    color: #bbb !important;
+}
+
+body.dark-mode .floating-chat-icon {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #333 !important;
+}

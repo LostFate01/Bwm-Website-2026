@@ -140,4 +140,47 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // --- DARK MODE LOGIC ---
+    const isDarkMode = localStorage.getItem('bmw_dark_mode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Navbar'a Dark Mode Butonu Ekle
+    const navbars = document.querySelectorAll('.navbar-nav.ms-auto');
+    navbars.forEach(nav => {
+        const li = document.createElement('li');
+        li.className = 'nav-item ms-2';
+        
+        // Mevcut navbarın yazı rengini kontrol et (index = text-white, modeller = text-dark vb.)
+        const existingIcon = nav.querySelector('i.bi-person');
+        let textClass = 'text-dark';
+        if(existingIcon) {
+           const link = existingIcon.closest('a');
+           if(link && link.classList.contains('text-white')) textClass = 'text-white';
+        }
+
+        li.innerHTML = `<a class="nav-link ${textClass}" href="#" id="darkModeToggleBtn" style="font-size: 18px !important; cursor: pointer; padding-left: 5px;" title="Aydınlık / Karanlık Tema"><i class="bi ${isDarkMode ? 'bi-sun-fill' : 'bi-moon-fill'}"></i></a>`;
+        nav.appendChild(li);
+
+        const btn = li.querySelector('#darkModeToggleBtn');
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const body = document.body;
+            const currentDark = body.classList.toggle('dark-mode');
+            localStorage.setItem('bmw_dark_mode', currentDark);
+            
+            // Bütün sayfalardaki (varsa çoklu) ikonları güncelle
+            document.querySelectorAll('#darkModeToggleBtn i').forEach(icon => {
+                if(currentDark) {
+                    icon.classList.remove('bi-moon-fill');
+                    icon.classList.add('bi-sun-fill');
+                } else {
+                    icon.classList.remove('bi-sun-fill');
+                    icon.classList.add('bi-moon-fill');
+                }
+            });
+        });
+    });
 });
