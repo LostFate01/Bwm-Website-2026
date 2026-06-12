@@ -472,18 +472,20 @@ body {
 
 .cont-rezerve {
     background: white;
-    padding: 40px;
-    width: 320px;
+    padding: 45px 30px;
+    width: 330px;
     border: 1px solid #e6e6e6;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: box-shadow 0.3s;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 .cont-rezerve:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
 }
 
 .cont-rezerve h3 {
@@ -1527,6 +1529,10 @@ body.dark-mode .cont-rezerve {
     background: #1e1e1e;
     border-color: #333;
     color: #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+body.dark-mode .cont-rezerve:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 body.dark-mode .cont-rezerve-button {
     border-color: #e0e0e0;
@@ -1549,4 +1555,200 @@ body.dark-mode .floating-chat-icon {
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
     border-color: #333 !important;
+}
+
+
+/* Footer Dark Mode */
+body.dark-mode .modern-white-footer {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+    border-top-color: #333 !important;
+}
+
+body.dark-mode .footer-newsletter {
+    border-bottom-color: #333 !important;
+}
+
+body.dark-mode .newsletter-text,
+body.dark-mode .footer-heading {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .footer-list a,
+body.dark-mode .footer-legal,
+body.dark-mode .footer-legal a,
+body.dark-mode .footer-social a {
+    color: #bbb !important;
+}
+
+body.dark-mode .footer-list a:hover,
+body.dark-mode .footer-legal a:hover,
+body.dark-mode .footer-social a:hover {
+    color: #1c69d4 !important;
+}
+
+/* Global Inline Overrides for Dark Mode */
+body.dark-mode [style*="color: #4d4d4d"],
+body.dark-mode [style*="color: #262626"],
+body.dark-mode [style*="color: #666"] {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode [style*="background-color: #f9f9f9"] {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+/* btn-outline-dark fix for Dark Mode */
+body.dark-mode .btn-outline-dark {
+    color: #e0e0e0 !important;
+    border-color: #e0e0e0 !important;
+}
+body.dark-mode .btn-outline-dark:hover {
+    background-color: #e0e0e0 !important;
+    color: #121212 !important;
+}
+
+/* Custom Gonder Button */
+.custom-gonder-btn {
+    border: 1px solid #262626 !important;
+    color: #262626 !important;
+    transition: 0.3s;
+    background-color: transparent !important;
+}
+.custom-gonder-btn:hover {
+    background-color: #262626 !important;
+    color: white !important;
+}
+
+body.dark-mode .custom-gonder-btn {
+    border: 1px solid #e0e0e0 !important;
+    color: #e0e0e0 !important;
+}
+body.dark-mode .custom-gonder-btn:hover {
+    background-color: #e0e0e0 !important;
+    color: #121212 !important;
+}
+
+
+/* Mega Menu Dark Mode */
+body.dark-mode .mega-menu {
+    background-color: #1a1a1a !important;
+    border-top: 1px solid #333 !important;
+}
+
+body.dark-mode .mega-menu-title {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .mega-menu-list a {
+    color: #bbb !important;
+}
+
+body.dark-mode .mega-menu-list a:hover {
+    color: #1c69d4 !important;
+}
+
+/* Ebulten Form Dark Mode */
+body.dark-mode .ebulten-form-section {
+    background-color: #121212 !important;
+}
+body.dark-mode .ebulten-desc,
+body.dark-mode .form-group label,
+body.dark-mode .custom-checkbox label,
+body.dark-mode .form-footer-text,
+body.dark-mode .recaptcha-box label {
+    color: #e0e0e0 !important;
+}
+body.dark-mode .recaptcha-box {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+/* Fix for icons in BMW'nizi Rezerve Edin */
+body.dark-mode .cont-rezerve i.text-dark {
+    color: #e0e0e0 !important;
+}
+
+/* İletişim Sayfası Dark Mode */
+body.dark-mode .yetkili-section,
+body.dark-mode .bize-ulasin-section {
+    background-color: #121212 !important;
+}
+
+body.dark-mode .yetkili-desc,
+body.dark-mode .link-text-arrow,
+body.dark-mode .accordion-body {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .link-text-arrow:hover {
+    color: #1c69d4 !important;
+}
+
+body.dark-mode .accordion-button {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .accordion-item {
+    border-color: #333 !important;
+}
+
+/* Accordion SVG icon color invert for dark mode */
+body.dark-mode .accordion-button:not(.collapsed)::after,
+body.dark-mode .accordion-button.collapsed::after {
+    filter: invert(1);
+}
+
+body.dark-mode .btn-iletisim-form {
+    border-color: #e0e0e0 !important;
+    color: #e0e0e0 !important;
+}
+body.dark-mode .btn-iletisim-form:hover {
+    background-color: #e0e0e0 !important;
+    color: #121212 !important;
+}
+
+/* Custom Outline Button (for links and generic buttons) */
+.custom-outline-btn {
+    border: 1px solid #262626 !important;
+    color: #262626 !important;
+    transition: 0.3s;
+    background-color: transparent !important;
+}
+.custom-outline-btn:hover {
+    background-color: #262626 !important;
+    color: white !important;
+}
+
+body.dark-mode .custom-outline-btn {
+    border: 1px solid #e0e0e0 !important;
+    color: #e0e0e0 !important;
+}
+body.dark-mode .custom-outline-btn:hover {
+    background-color: #e0e0e0 !important;
+    color: #121212 !important;
+}
+
+/* Service Cards in Hizmetler */
+.service-card {
+    background: white !important;
+    border: 1px solid #e6e6e6 !important;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+.service-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+}
+
+body.dark-mode .service-card {
+    background: #1e1e1e !important;
+    border-color: #333 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+body.dark-mode .service-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }

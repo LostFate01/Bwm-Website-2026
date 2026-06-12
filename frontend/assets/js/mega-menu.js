@@ -5,44 +5,49 @@ document.addEventListener("DOMContentLoaded", function() {
     const logoImg = document.querySelector('.navbar-brand img');
     
     // Original state
-    let originalNavClass = navbar.className;
+    let originalNavClass = navbar ? navbar.className : '';
     let originalLogoSrc = logoImg ? logoImg.getAttribute('src') : '';
-    let isDarkNav = navbar.classList.contains('navbar-dark');
+    let isDarkNav = navbar ? navbar.classList.contains('navbar-dark') : false;
 
     if (kesfedinDropdown && navbar) {
         kesfedinDropdown.addEventListener('show.bs.dropdown', function () {
-            // When menu starts opening: instantly prepare the navbar
-            navbar.style.setProperty('background-color', '#ffffff', 'important');
-            navbar.classList.remove('navbar-dark');
-            navbar.classList.add('navbar-light');
+            const isDarkMode = document.body.classList.contains('dark-mode');
             
-            navLinks.forEach(link => {
-                link.classList.remove('text-white');
-                link.classList.add('text-dark');
-            });
+            if (isDarkMode) {
+                navbar.style.setProperty('background-color', '#1a1a1a', 'important');
+                navbar.classList.remove('navbar-light');
+                navbar.classList.add('navbar-dark');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-dark');
+                    link.classList.add('text-white');
+                });
+            } else {
+                navbar.style.setProperty('background-color', '#ffffff', 'important');
+                navbar.classList.remove('navbar-dark');
+                navbar.classList.add('navbar-light');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-dark');
+                });
+            }
 
             if (isDarkNav && logoImg) {
                 let basePath = originalLogoSrc.substring(0, originalLogoSrc.lastIndexOf('/') + 1);
                 if (!basePath) basePath = 'images/';
-                logoImg.setAttribute('src', basePath + 'BMW Logo.png');
                 
-                // Keep the visual size identical
+                if (isDarkMode) {
+                    logoImg.setAttribute('src', originalLogoSrc); // Keep white logo in dark mode
+                } else {
+                    logoImg.setAttribute('src', basePath + 'BMW Logo.png');
+                }
                 logoImg.style.width = '52px';
             }
             
-            // Remove border on inner div
             const innerDiv = navbar.querySelector('div > div');
             if(innerDiv) innerDiv.style.borderBottom = 'none';
         });
 
-        // We completely ignore 'hide.bs.dropdown' so the navbar stays solid white
-        // while the menu gracefully animates closed. 
-        // This prevents the transparent background from revealing the video 
-        // behind the fading menu, which causes the messy overlap look.
-
         kesfedinDropdown.addEventListener('hidden.bs.dropdown', function () {
-            // ONLY after the menu is completely closed and invisible, 
-            // we instantly snap the navbar back to its original transparent/dark state.
             navbar.style.setProperty('background-color', 'transparent', 'important');
             
             if (isDarkNav) {
@@ -60,9 +65,26 @@ document.addEventListener("DOMContentLoaded", function() {
                     logoImg.style.marginLeft = '0';
                     logoImg.style.marginRight = '0';
                 }
+            } else {
+                // If original wasn't dark nav, restore properly
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                if (isDarkMode) {
+                    navbar.classList.remove('navbar-light');
+                    navbar.classList.add('navbar-dark');
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-dark');
+                        link.classList.add('text-white');
+                    });
+                } else {
+                    navbar.classList.add('navbar-light');
+                    navbar.classList.remove('navbar-dark');
+                    navLinks.forEach(link => {
+                        link.classList.add('text-dark');
+                        link.classList.remove('text-white');
+                    });
+                }
             }
             
-            // Revert border
             const innerDiv = navbar.querySelector('div > div');
             if(innerDiv) innerDiv.style.borderBottom = '1px solid rgba(255, 255, 255, 0.25)';
         });

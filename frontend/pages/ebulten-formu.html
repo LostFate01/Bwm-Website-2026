@@ -140,7 +140,7 @@
   </style>
 </head>
 
-<body style="background-color: #fff;">
+<body>
   
   <!-- YENİ ŞEFFAF VE ZARİF NAVBAR -->
   <nav class="navbar navbar-expand-xl custom-navbar navbar-dark" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; background-color: transparent !important;">
@@ -282,7 +282,7 @@
               <label for="kabul">Yukarıda paylaşmış olduğum iletişim bilgilerimin, Borusan Otomotiv İthalat ve Dağıtım A.Ş. tarafından bana aylık gönderilecek olan BMW E-bülteni iletişimi için kullanılacağını kabul ediyorum.</label>
             </div>
 
-            <a href="#" class="link-text">Kişisel verilerin işlenmesine ilişkin aydınlatma metni için tıklayınız.</a>
+            <a href="#" class="link-text" data-bs-toggle="modal" data-bs-target="#kvkkModal">Kişisel verilerin işlenmesine ilişkin aydınlatma metni için tıklayınız.</a>
 
             <div class="recaptcha-box">
               <input type="checkbox" id="robot" required>
@@ -498,5 +498,25 @@
   </a>
 </footer>
 
+
+    <!-- KVKK Modal -->
+    <div class="modal fade" id="kvkkModal" tabindex="-1" aria-labelledby="kvkkModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="kvkkModalLabel" style="font-weight: 400;">Aydınlatma Metni</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="font-size: 15px; line-height: 1.6;">
+            <p><strong>Borusan Otomotiv İthalat ve Dağıtım A.Ş. (Borusan Otomotiv)</strong> olarak müşterilerimizin kişisel verilerinin korunmasına büyük önem veriyoruz.</p>
+            <p>Kişisel verileriniz, E-bülten üyeliğiniz kapsamında size özel kampanya, tanıtım ve avantajlardan haberdar edilmeniz amacıyla, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca işlenmektedir.</p>
+            <p>Detaylı bilgi için web sitemizdeki KVKK Politikamızı inceleyebilirsiniz.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background-color: #1c69d4; border-color: #1c69d4; width: 100%;">Anladım</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
