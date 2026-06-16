@@ -28,7 +28,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-xl-0 main-nav-links" style="font-weight: 600;">
               <li class="nav-item me-3"><a class="nav-link text-dark" href="modeller.html" style="text-transform: none !important; font-size: 14.5px !important;">Modeller</a></li>
-              <li class="nav-item me-3"><a class="nav-link text-dark" href="elektrikli.html" style="text-transform: none !important; font-size: 14.5px !important;">%100 Elektrikli Modeller <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
+              
               <li class="nav-item me-3"><a class="nav-link text-dark" href="#" style="text-transform: none !important; font-size: 14.5px !important;">BMW'nizi Online Rezerve Edin</a></li>
               <li class="nav-item me-3"><a class="nav-link text-dark" href="hizmetler.html" style="text-transform: none !important; font-size: 14.5px !important;">Online Hizmetler <i class="bi bi-chevron-down ms-1" style="font-size: 11px;"></i></a></li>
               <li class="nav-item dropdown position-static">
@@ -118,8 +118,8 @@
             Size uygun akıllı teknolojiyi, yenilikçi özellikleri ve motor tipini bulmak için en son otomobil modellerimizi inceleyin. Mükemmel yeni BMW'nizi kolayca karşılaştırın, yapılandırın ve bulun.
         </p>
         <div class="d-flex justify-content-end mb-3">
-            <select class="form-select w-auto" style="border-radius: 0; box-shadow: none;">
-                <option selected>Varsayılan Sıralama</option>
+            <select class="form-select w-auto custom-sort-select" id="sortSelect">
+                <option selected value="0">Varsayılan Sıralama</option>
                 <option value="1">Fiyat (Artan)</option>
                 <option value="2">Fiyat (Azalan)</option>
             </select>
@@ -296,7 +296,7 @@
                             const fuelTextColor = item.yakit_tipi === 'Elektrik' ? 'text-primary' : 'text-dark';
 
                             const html = `
-                            <div class="col car-card-container" data-category="${category}" data-series="${series}" data-drivetrain="${drivetrain}">
+                            <div class="col car-card-container" data-category="${category}" data-series="${series}" data-drivetrain="${drivetrain}" data-price="${item.min_price}">
                                 <div class="bmw-orig-card">
                                     <div class="card-badges">
                                         <span class="badge-bg">${item.kasa_tipi || 'Model'}</span> ${badge2}
@@ -390,6 +390,32 @@
                 } else if (emptyMsg) {
                     emptyMsg.style.display = "none";
                 }
+            }
+
+            const sortSelect = document.getElementById('sortSelect');
+            if(sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    const sortType = sortSelect.value;
+                    const carGrid = document.getElementById('carGrid');
+                    // Get only card elements, exclude empty msg if present
+                    const cardsArray = Array.from(carGrid.querySelectorAll('.car-card-container'));
+
+                    cardsArray.sort((a, b) => {
+                        if(sortType === '1' || sortType === '2') {
+                            const priceA = parseFloat(a.dataset.price) || 0;
+                            const priceB = parseFloat(b.dataset.price) || 0;
+                            return sortType === '1' ? priceA - priceB : priceB - priceA;
+                        } else {
+                            // Varsayılan Sıralama (Seriye göre)
+                            const seriesA = a.dataset.series || '';
+                            const seriesB = b.dataset.series || '';
+                            // Doğru alfabetik ve numerik sıralama (1, 2, 3, iX, X1 vs.)
+                            return seriesA.localeCompare(seriesB, undefined, {numeric: true, sensitivity: 'base'});
+                        }
+                    });
+
+                    cardsArray.forEach(card => carGrid.appendChild(card));
+                });
             }
         });
 

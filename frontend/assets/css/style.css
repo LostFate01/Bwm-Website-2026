@@ -1798,3 +1798,36 @@ body.dark-mode .auth-btn-google:hover {
 body.dark-mode .auth-switch {
     color: #bbb !important;
 }
+
+
+/* Custom Sort Select */
+.custom-sort-select {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    font-weight: 500;
+    padding: 8px 35px 8px 10px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.custom-sort-select:focus {
+    box-shadow: none;
+    border-color: #1c69d4;
+    outline: none;
+}
+body.dark-mode .custom-sort-select {
+    color: #e0e0e0;
+    border-color: #555;
+    background-color: transparent;
+    /* Optional: add a slight bg if transparent looks bad, but usually text color is enough */
+}
+body.dark-mode .custom-sort-select:focus {
+    border-color: #1c69d4;
+}
+body.dark-mode .custom-sort-select option {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}

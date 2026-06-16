@@ -483,9 +483,9 @@ def get_kampanyalar():
         db = get_db()
         cursor = db.cursor(dictionary=True)
         if sadece_aktif == '1':
-            cursor.execute("SELECT * FROM kampanyalar WHERE aktif=1 ORDER BY baslangic_tarihi DESC")
+            cursor.execute("SELECT *, baslik AS kampanya_adi FROM kampanyalar WHERE aktif=1 ORDER BY baslangic_tarihi DESC")
         else:
-            cursor.execute("SELECT * FROM kampanyalar ORDER BY baslangic_tarihi DESC")
+            cursor.execute("SELECT *, baslik AS kampanya_adi FROM kampanyalar ORDER BY baslangic_tarihi DESC")
         kampanyalar = cursor.fetchall()
         for k in kampanyalar:
             if k.get('baslangic_tarihi'):
@@ -509,7 +509,7 @@ def create_kampanya():
         db = get_db()
         cursor = db.cursor()
         cursor.execute("""
-            INSERT INTO kampanyalar (kampanya_adi, aciklama, baslangic_tarihi, bitis_tarihi, aktif, resim_yolu)
+            INSERT INTO kampanyalar (baslik, aciklama, baslangic_tarihi, bitis_tarihi, aktif, resim_yolu)
             VALUES (%s, %s, %s, %s, %s, %s)
         """, (
             data['kampanya_adi'], data.get('aciklama'),
@@ -532,15 +532,44 @@ def update_kampanya(kampanya_id):
             return error("Veri gönderilmedi", 400)
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("""
-            UPDATE kampanyalar SET kampanya_adi=%s, aciklama=%s,
-            baslangic_tarihi=%s, bitis_tarihi=%s, aktif=%s, resim_yolu=%s
-            WHERE id=%s
-        """, (
-            data.get('kampanya_adi'), data.get('aciklama'),
-            data.get('baslangic_tarihi'), data.get('bitis_tarihi'),
-            1 if data.get('aktif') else 0, data.get('resim_yolu'), kampanya_id
-        ))
+        
+        # Dinamik SQL oluşturarak sadece gelen alanları güncelle
+        fields = []
+        params = []
+        
+        if 'kampanya_adi' in data:
+            fields.append("baslik = %s")
+            params.append(data['kampanya_adi'])
+        elif 'baslik' in data:
+            fields.append("baslik = %s")
+            params.append(data['baslik'])
+            
+        if 'aciklama' in data:
+            fields.append("aciklama = %s")
+            params.append(data['aciklama'])
+            
+        if 'baslangic_tarihi' in data:
+            fields.append("baslangic_tarihi = %s")
+            params.append(data['baslangic_tarihi'])
+            
+        if 'bitis_tarihi' in data:
+            fields.append("bitis_tarihi = %s")
+            params.append(data['bitis_tarihi'])
+            
+        if 'aktif' in data:
+            fields.append("aktif = %s")
+            params.append(1 if data['aktif'] else 0)
+            
+        if 'resim_yolu' in data:
+            fields.append("resim_yolu = %s")
+            params.append(data['resim_yolu'])
+            
+        if not fields:
+            return error("Güncellenecek geçerli alan bulunamadı", 400)
+            
+        params.append(kampanya_id)
+        query = f"UPDATE kampanyalar SET {', '.join(fields)} WHERE id = %s"
+        cursor.execute(query, params)
         db.commit()
         if cursor.rowcount == 0:
             return error("Kampanya bulunamadı", 404)
@@ -879,6 +908,47 @@ def get_admin_siparisler():
         cursor.close()
         db.close()
         return success(data)
+    except Exception as e:
+        return error(str(e), 500)
+
+# ==================================================================
+# 9. GÖSTERGE PANELİ (DASHBOARD) İSTATİSTİKLERİ
+# ==================================================================
+
+@app.route('/api/admin/dashboard', methods=['GET'])
+def get_dashboard():
+    try:
+        db = get_db()
+        cursor = db.cursor(dictionary=True)
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM siparisler")
+        siparis_sayi = cursor.fetchone()['sayi']
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM sepet")
+        sepet_sayi = cursor.fetchone()['sayi']
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM iletisim_talepleri")
+        iletisim_sayi = cursor.fetchone()['sayi']
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM musteriler")
+        musteri_sayi = cursor.fetchone()['sayi']
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM modeller")
+        model_sayi = cursor.fetchone()['sayi']
+        
+        cursor.execute("SELECT COUNT(*) as sayi FROM kampanyalar WHERE aktif = 1")
+        kampanya_sayi = cursor.fetchone()['sayi']
+        
+        cursor.close()
+        db.close()
+        return success({
+            "siparis": siparis_sayi,
+            "sepet": sepet_sayi,
+            "iletisim": iletisim_sayi,
+            "musteri": musteri_sayi,
+            "model": model_sayi,
+            "kampanya": kampanya_sayi
+        })
     except Exception as e:
         return error(str(e), 500)
 

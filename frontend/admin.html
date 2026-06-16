@@ -35,6 +35,23 @@
     .alert-api.error { background: #4d1e1e; color: #e74c3c; border: 1px solid #e74c3c; }
     #login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
     .login-box { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 40px; width: 380px; }
+    /* Gösterge Paneli Kartları */
+    .dash-cards { display: flex; flex-wrap: wrap; gap: 20px; }
+    .dash-card { background: #1a1a1a; border-radius: 12px; padding: 25px 30px; min-width: 180px; flex: 1; text-align: center; }
+    .dash-card .dash-num { font-size: 2.8rem; font-weight: bold; }
+    .dash-card .dash-label { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
+    .dash-card.blue { border: 2px solid #1c69d4; }
+    .dash-card.blue .dash-num { color: #1c69d4; }
+    .dash-card.cyan { border: 2px solid #00bcd4; }
+    .dash-card.cyan .dash-num { color: #00bcd4; }
+    .dash-card.green { border: 2px solid #27ae60; }
+    .dash-card.green .dash-num { color: #27ae60; }
+    .dash-card.yellow { border: 2px solid #f1c40f; }
+    .dash-card.yellow .dash-num { color: #f1c40f; }
+    .dash-card.orange { border: 2px solid #e67e22; }
+    .dash-card.orange .dash-num { color: #e67e22; }
+    .dash-card.red { border: 2px solid #e74c3c; }
+    .dash-card.red .dash-num { color: #e74c3c; }
   </style>
 </head>
 <body>
@@ -65,10 +82,13 @@
     <!-- Sidebar -->
     <div class="col-md-2 sidebar">
       <div class="brand">BMW <span>Admin</span></div>
-      <button class="nav-btn active" onclick="showSection('iletisim')"><i class="bi bi-envelope-paper me-2"></i> İletişim Talepleri</button>
+      <button class="nav-btn active" onclick="showSection('gosterge')"><i class="bi bi-speedometer2 me-2"></i> Gösterge Paneli</button>
+      <button class="nav-btn" onclick="showSection('iletisim')"><i class="bi bi-envelope-paper me-2"></i> İletişim Talepleri</button>
       <button class="nav-btn" onclick="showSection('kampanyalar')"><i class="bi bi-megaphone me-2"></i> Kampanyalar</button>
       <button class="nav-btn" onclick="showSection('fiyatlar')"><i class="bi bi-tags me-2"></i> Fiyat Listesi</button>
       <button class="nav-btn" onclick="showSection('modeller')"><i class="bi bi-car-front me-2"></i> Modeller</button>
+      <button class="nav-btn" onclick="showSection('kesinlesen')"><i class="bi bi-bag-check me-2"></i> Kesinleşen Siparişler</button>
+      <button class="nav-btn" onclick="showSection('musteri_sepet')"><i class="bi bi-cart3 me-2"></i> Müşteri Sepetleri</button>
       <hr style="border-color:#333;">
       <button class="nav-btn" onclick="doLogout()" style="color:#e74c3c;"><i class="bi bi-box-arrow-right me-2"></i> Çıkış</button>
     </div>
@@ -76,8 +96,79 @@
     <!-- İçerik -->
     <div class="col-md-10 main-content">
 
+      <!-- GÖSTERGE PANELİ -->
+      <div id="section-gosterge" class="section active">
+        <h3 class="mb-4"><i class="bi bi-speedometer2"></i> Sistem Özeti</h3>
+        <div class="dash-cards" id="dashboard-cards">
+          <div class="dash-card blue">
+            <div class="dash-num" id="dash-siparis">0</div>
+            <div class="dash-label">Kesinleşen Sipariş</div>
+          </div>
+          <div class="dash-card cyan">
+            <div class="dash-num" id="dash-sepet">0</div>
+            <div class="dash-label">Sepetteki Araç</div>
+          </div>
+          <div class="dash-card green">
+            <div class="dash-num" id="dash-iletisim">0</div>
+            <div class="dash-label">Toplam İletişim / Talep</div>
+          </div>
+          <div class="dash-card yellow">
+            <div class="dash-num" id="dash-musteri">0</div>
+            <div class="dash-label">Kayıtlı Müşteri</div>
+          </div>
+        </div>
+        <div class="dash-cards mt-4">
+          <div class="dash-card orange">
+            <div class="dash-num" id="dash-model">0</div>
+            <div class="dash-label">Araba Modeli</div>
+          </div>
+          <div class="dash-card red">
+            <div class="dash-num" id="dash-kampanya">0</div>
+            <div class="dash-label">Aktif Kampanya</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KESİNLEŞEN SİPARİŞLER -->
+      <div id="section-kesinlesen" class="section">
+        <h3 class="mb-4"><i class="bi bi-bag-check"></i> Kesinleşen Siparişler</h3>
+        <div id="siparis-alert" class="alert-api"></div>
+        <div class="card-admin">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th><th>Müşteri</th><th>E-Posta</th><th>Model / Paket</th>
+                  <th>Tutar (₺)</th><th>Tarih</th><th>Durum</th>
+                </tr>
+              </thead>
+              <tbody id="siparis-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÜŞTERİ SEPETLERİ -->
+      <div id="section-musteri_sepet" class="section">
+        <h3 class="mb-4"><i class="bi bi-cart3"></i> Müşteri Sepetleri</h3>
+        <div id="sepet-alert" class="alert-api"></div>
+        <div class="card-admin">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th><th>Müşteri</th><th>E-Posta</th><th>Model</th>
+                  <th>Paket</th><th>Fiyat (₺)</th><th>Tarih</th>
+                </tr>
+              </thead>
+              <tbody id="sepet-ozet-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <!-- İLETİŞİM TALEPLERİ -->
-      <div id="section-iletisim" class="section active">
+      <div id="section-iletisim" class="section">
         <h3 class="mb-4"><i class="bi bi-envelope-paper"></i> İletişim Talepleri</h3>
         <div id="iletisim-alert" class="alert-api"></div>
         <div class="card-admin">
@@ -262,10 +353,13 @@ function showSection(name) {
 }
 
 function loadAll() {
+  loadDashboard();
   loadIletisim();
   loadKampanyalar();
   loadFiyatlar();
   loadModeller();
+  loadKesinSiparisler();
+  loadMusteriSepetleri();
   loadSerilerForSelect();
 }
 
@@ -280,6 +374,74 @@ function showAlert(id, msg, type) {
 
 function fiyatFormat(f) {
   return Number(f).toLocaleString('tr-TR') + ' ₺';
+}
+
+
+// ——— GÖSTERGE PANELİ ———
+async function loadDashboard() {
+  try {
+    const res = await fetch(`${API}/admin/dashboard`);
+    const json = await res.json();
+    if (json.success) {
+      document.getElementById('dash-siparis').textContent = json.data.siparis;
+      document.getElementById('dash-sepet').textContent = json.data.sepet;
+      document.getElementById('dash-iletisim').textContent = json.data.iletisim;
+      document.getElementById('dash-musteri').textContent = json.data.musteri;
+      document.getElementById('dash-model').textContent = json.data.model;
+      document.getElementById('dash-kampanya').textContent = json.data.kampanya;
+    }
+  } catch(e) { console.error('Dashboard yüklenemedi:', e); }
+}
+
+// ——— KESİNLEŞEN SİPARİŞLER ———
+async function loadKesinSiparisler() {
+  try {
+    const res = await fetch(`${API}/admin/siparisler`);
+    const json = await res.json();
+    const tbody = document.getElementById('siparis-body');
+    tbody.innerHTML = '';
+    if(json.data && json.data.length > 0) {
+      json.data.forEach(s => {
+        let badge = s.durum === 'Onaylandı' ? 'badge-tamamlandi' : 'badge-bekliyor';
+        tbody.innerHTML += `<tr>
+          <td>#${s.id}</td>
+          <td>${s.ad_soyad}</td>
+          <td>${s.email}</td>
+          <td>${s.model_adi} - ${s.paket_adi}</td>
+          <td>${s.tutar ? s.tutar.toLocaleString('tr-TR') : '0'} ₺</td>
+          <td>${s.siparis_tarihi}</td>
+          <td><span class="${badge}">${s.durum}</span></td>
+        </tr>`;
+      });
+    } else {
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center">Henüz sipariş bulunmuyor.</td></tr>';
+    }
+  } catch(e) { showAlert('siparis-alert', 'Siparişler yüklenemedi', 'error'); }
+}
+
+// ——— MÜŞTERİ SEPETLERİ ———
+async function loadMusteriSepetleri() {
+  try {
+    const res = await fetch(`${API}/admin/sepet_ozet`);
+    const json = await res.json();
+    const tbody = document.getElementById('sepet-ozet-body');
+    tbody.innerHTML = '';
+    if(json.data && json.data.length > 0) {
+      json.data.forEach(s => {
+        tbody.innerHTML += `<tr>
+          <td>#${s.id}</td>
+          <td>${s.ad_soyad || '<span class="text-muted">Misafir</span>'}</td>
+          <td>${s.email || '-'}</td>
+          <td>${s.model_adi}</td>
+          <td>${s.paket_adi}</td>
+          <td>${s.fiyat ? s.fiyat.toLocaleString('tr-TR') + ' ₺' : '-'}</td>
+          <td>${s.olusturma_tarihi || '-'}</td>
+        </tr>`;
+      });
+    } else {
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center">Sepette ürün bulunmuyor.</td></tr>';
+    }
+  } catch(e) { showAlert('sepet-alert', 'Sepet verileri yüklenemedi', 'error'); }
 }
 
 // ——— İLETİŞİM TALEPLERİ ———
@@ -482,6 +644,7 @@ async function addModel() {
   const json = await res.json();
   showAlert('model-alert', json.data?.message || json.error, json.success ? 'success' : 'error');
   if (json.success) loadModeller();
+  loadKesinSiparisler();
 }
 
 async function deleteModel(id) {
@@ -490,6 +653,7 @@ async function deleteModel(id) {
   const json = await res.json();
   showAlert('model-alert', json.data?.message || json.error, json.success ? 'success' : 'error');
   loadModeller();
+  loadSiparisler();
 }
 
 // Enter tuşu ile giriş

@@ -43,13 +43,13 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 ## API Endpointleri
 Proje, frontend'i beslemek için aşağıdaki temel REST API servislerini sunar:
 
-- **Seriler:** `GET, POST, PUT, DELETE /api/seriler`
-- **Modeller:** `GET, POST, PUT, DELETE /api/modeller`
-- **Fiyat Listesi:** `GET, PUT /api/fiyat-listesi`
-- **İletişim Talepleri:** `GET, POST, PATCH, DELETE /api/iletisim`
-- **Geri Çağırmalar:** `POST /api/geri-cagirma`
-- **Kampanyalar:** `GET, POST, PUT, DELETE /api/kampanyalar`
-- **Auth (Admin):** `POST /api/auth/login`, `POST /api/auth/set-password`
+- **Seriler:** `GET, POST, PUT, DELETE`
+- **Modeller:** `GET, POST, PUT, DELETE`
+- **Fiyat Listesi:** `GET, PUT`
+- **İletişim Talepleri:** `GET, POST, PATCH, DELETE`
+- **Geri Çağırmalar:** `POST`
+- **Kampanyalar:** `GET, POST, PUT, DELETE`
+- **Auth (Admin):** `POST`
 - **Session Temelli İşlemler:**
   - `GET /api/bayiler`
   - `GET, POST, DELETE /api/favoriler`
@@ -69,11 +69,20 @@ Sistem, `bmw_bayi` veritabanı altında tam ilişkisel (Primary Key / Foreign Ke
 - **favoriler** & **sepet**: Session bazlı geçici verileri tutar.
 
 ## Ekran Görüntüleri
-*(Proje tamamlandığında ekran görüntülerini `frontend/images/` gibi bir yola ekleyip burada sergileyebilirsiniz)*
-- Ana Sayfa Dinamik Slider
-- Mega Menü ("BMW'yi Keşfedin")
-- Filtrelenebilir Modeller Sayfası
-- API Destekli Tam Ekran İletişim Formları
+
+Aşağıda projenin farklı sayfalarından alınmış ekran görüntüleri yer almaktadır:
+
+### 1. Ana Sayfa (iX3 Tanıtım ve Menü)
+![Ana Sayfa](frontend/assets/images/mainscreen.png)
+
+### 2. Genişletilmiş Mega Menü ("BMW'yi Keşfedin")
+![Mega Menü](frontend/assets/images/megamenu.png)
+
+### 3. Filtrelenebilir Modeller Sayfası
+![Modeller](frontend/assets/images/modeller.png)
+
+### 4. Müşteri Sepeti Sayfası
+![Müşteri Sepeti](frontend/assets/images/sepet.png)
 
 ## Kullanım Örnekleri
 - **Kullanıcı Akışı:** Siteye giren bir müşteri "Modeller" sekmesinden araçları filtreler, "Fiyat Listesi" kısmında tüm donanım ve fiyatları listeler ve ilgilendiği araç için "İletişim" sayfasından talebini bırakır. Bu işlemlerin tamamı JSON API üzerinden MySQL'den çekilir.
