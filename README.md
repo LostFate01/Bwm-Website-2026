@@ -7,10 +7,10 @@ Bu proje bir üniversite ödevidir. Temel amacı, statik bir BMW Bayi web sitesi
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript, Bootstrap 5
 - **Backend:** Python, Flask, Flask-CORS
 - **Veritabanı:** MySQL
-- **Güvenlik:** `bcrypt` (Admin şifre hashleme için)
+- **Güvenlik:** `bcrypt`
 
 ## Kurulum Adımları
-Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
+Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin: 
 
 1. **Veritabanını Kurun:**
    MySQL sunucunuzun çalıştığından emin olun.
