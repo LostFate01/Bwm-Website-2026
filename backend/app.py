@@ -1,7 +1,5 @@
 # =============================================================
-# BMW Bayi Web Sitesi - Flask REST API
-# Neden Flask? Hafif, hızlı kurulumu ve Python ekosistemiyle
-# uyumu sayesinde üniversite projeleri için idealdir.
+# BMW Bayi Web Sitesi - Flask REST API  
 # =============================================================
 
 from flask import Flask, request, jsonify
@@ -12,35 +10,26 @@ import os
 from datetime import datetime
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
-CORS(app)  # Frontend'in farklı port'tan istek atabilmesi için CORS açık
+CORS(app)  # Frontend'in farklı port'tan istek atabilmesi için CORS açık 
 
 # ------------------------------------------------------------------
 # VERİTABANI BAĞLANTI AYARLARI
-# Gerçek projede bu değerleri .env dosyasından okuyun!
 # ------------------------------------------------------------------
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',       # MySQL şifrenizi buraya yazın
+    'password': '',       
     'database': 'bmw_bayi',
     'charset': 'utf8mb4'
 }
 
 def get_db():
-    """
-    Her istek için yeni bir veritabanı bağlantısı açar.
-    Neden her seferinde yeni bağlantı? Basit projelerde
-    connection pool yerine bu yöntem yeterlidir ve
-    "stale connection" hatalarını önler.
-    """
     return mysql.connector.connect(**DB_CONFIG)
 
 def success(data, status=200):
-    """Standart başarı yanıtı formatı"""
     return jsonify({"success": True, "data": data}), status
 
 def error(message, status=400):
-    """Standart hata yanıtı formatı"""
     return jsonify({"success": False, "error": message}), status
 
 # ==================================================================
@@ -56,7 +45,6 @@ def index():
 
 @app.route('/api/seriler', methods=['GET'])
 def get_seriler():
-    """Tüm BMW serilerini listeler"""
     try:
         db = get_db()
         cursor = db.cursor(dictionary=True)
@@ -70,7 +58,6 @@ def get_seriler():
 
 @app.route('/api/seriler/<int:seri_id>', methods=['GET'])
 def get_seri(seri_id):
-    """Belirli bir seriyi getirir"""
     try:
         db = get_db()
         cursor = db.cursor(dictionary=True)
@@ -86,7 +73,7 @@ def get_seri(seri_id):
 
 @app.route('/api/seriler', methods=['POST'])
 def create_seri():
-    """Yeni seri ekler"""
+    
     try:
         data = request.get_json()
         # Validasyon: zorunlu alanları kontrol et
