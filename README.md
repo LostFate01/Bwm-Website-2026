@@ -4,7 +4,7 @@
 Bu proje bir üniversite ödevidir. Temel amacı, statik bir BMW Bayi web sitesini (HTML/CSS/JS) ele alarak **RESTful API** ve **MySQL veritabanı** kullanarak dinamik ve tam donanımlı bir web uygulamasına dönüştürmektir. Sitede yer alan fiyat listeleri, model detayları, iletişim formları ve kampanyalar tamamen veritabanından dinamik olarak çekilir ve yönetilir.
 
 ## Kullanılan Teknolojiler
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript, Bootstrap 5 (Modern, şeffaf navbar, mega menü ve responsive tasarım entegrasyonlarıyla güçlendirildi)
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript, Bootstrap 5
 - **Backend:** Python, Flask, Flask-CORS
 - **Veritabanı:** MySQL
 - **Güvenlik:** `bcrypt` (Admin şifre hashleme için)
