@@ -46,7 +46,13 @@ class Kampanya(BaseModel):
 def get_modeller():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    query = 
+    query = """
+        SELECT m.*, s.seri_adi, s.seri_kodu
+        FROM modeller m
+        JOIN seriler s ON m.seri_id = s.id
+        WHERE m.aktif = 1
+        ORDER BY s.seri_kodu, m.model_adi
+    """
     cursor.execute(query)
     modeller = cursor.fetchall()
     cursor.close()
@@ -57,9 +63,25 @@ def get_modeller():
 def get_fiyat_listesi():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    query = 
+    query = """
+        SELECT
+            fl.id, fl.fiyat, fl.gecerlilik_tarihi,
+            m.id AS model_id, m.model_adi, m.yakit_tipi, m.kasa_tipi,
+            m.resim_yolu,
+            dp.id AS donanim_id, dp.paket_adi, dp.motor AS motor_bilgisi, dp.motor_gucu, dp.hiz_0_100, dp.sanziman, dp.ozellikler,
+            s.id AS seri_id, s.seri_adi, s.seri_kodu
+        FROM fiyat_listesi fl
+        JOIN donanim_paketleri dp ON fl.donanim_id = dp.id
+        JOIN modeller m ON dp.model_id = m.id
+        JOIN seriler s ON m.seri_id = s.id
+        WHERE m.aktif = 1
+        ORDER BY s.seri_kodu, m.model_adi, fl.fiyat
+    """
     cursor.execute(query)
     fiyatlar = cursor.fetchall()
+    for row in fiyatlar:
+        if row.get('fiyat'):
+            row['fiyat'] = float(row['fiyat'])
     cursor.close()
     conn.close()
     return fiyatlar
@@ -135,7 +157,7 @@ def delete_model(model_id: int):
     conn.commit()
     cursor.close()
     conn.close()
-    return {"message": "Model silindi."}
+    return {"message": "Model silindi."} 
 
 if __name__ == "__main__":
     import uvicorn

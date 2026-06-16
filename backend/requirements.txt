@@ -1,6 +1,6 @@
 # Python Sürümü: 3.9 veya daha güncel bir sürüm önerilir (Örn: 3.10, 3.11, 3.12)
-
+python==3.13 
 flask==3.0.3
 flask-cors==4.0.1
-mysql-connector-python==8.4.0
+mysql-connector-python==8.4.0 
 bcrypt==4.1.3
